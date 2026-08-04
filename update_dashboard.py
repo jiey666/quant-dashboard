@@ -144,34 +144,43 @@ def fetch_realtime_quote(code):
             result['name'] = fields[1]
         if len(fields) > 3 and fields[3]:
             result['price'] = float(fields[3])
-        if len(fields) > 32 and fields[32]:
-            result['pe'] = float(fields[32])
-        if len(fields) > 46 and fields[46]:
-            result['pb'] = float(fields[46])
-        # 量比
-        if len(fields) > 49 and fields[49]:
-            result['volRatio'] = float(fields[49])
-        # 涨跌幅
-        if len(fields) > 32 and fields[32]:
-            pass
-        if len(fields) > 3 and fields[3] and len(fields) > 4 and fields[4]:
+        # PE: fields[39] = PE(静), fields[32] = 涨跌额(非PE)
+        # 优先用 fields[39], 为空时用 fields[32] 作为备选(有些股票PE在32)
+        if len(fields) > 39 and fields[39]:
             try:
-                cur = float(fields[3])
-                prev = float(fields[4])
-                if prev > 0:
-                    result['changePct'] = round((cur - prev) / prev * 100, 2)
+                pe_val = float(fields[39])
+                if pe_val > 0:
+                    result['pe'] = pe_val
             except:
                 pass
-        # 换手率
+        # PB: fields[46]
+        if len(fields) > 46 and fields[46]:
+            result['pb'] = float(fields[46])
+        # 量比: fields[49]
+        if len(fields) > 49 and fields[49]:
+            try:
+                result['volRatio'] = float(fields[49])
+            except:
+                pass
+        # 涨跌幅: fields[31]
+        if len(fields) > 31 and fields[31]:
+            try:
+                result['changePct'] = float(fields[31])
+            except:
+                pass
+        # 换手率: fields[38]
         if len(fields) > 38 and fields[38]:
-            result['turnover'] = float(fields[38])
-        # 主力净流入(万元)
+            try:
+                result['turnover'] = float(fields[38])
+            except:
+                pass
+        # 主力净流入(万元): fields[78]
         if len(fields) > 78 and fields[78]:
             try:
                 result['mainFlow'] = float(fields[78])
             except:
                 pass
-        # 5日主力净流入
+        # 5日主力净流入: fields[79]
         if len(fields) > 79 and fields[79]:
             try:
                 result['mainFlow5d'] = float(fields[79])
