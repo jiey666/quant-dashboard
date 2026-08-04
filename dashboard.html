@@ -2935,17 +2935,33 @@ function renderStats() {
       <div class="stat-mini-value orange">${kdHighPhaseCount}</div>
     </div>
     ` : `
-    <div class="stat-mini blue ${activeStatFilter === 'launch' ? 'active' : ''}" onclick="setStatFilter('launch')">
-      <div class="stat-mini-label">启动段</div>
+    <div class="stat-mini blue ${activeStatFilter === 'launch' ? 'active' : ''}" onclick="setStatFilter('launch')" title="启动在即+接近启动+启动段 三阶段合计">
+      <div class="stat-mini-label">启动系列</div>
       <div class="stat-mini-value blue">${launchCount}</div>
     </div>
+    <div class="stat-mini red ${activeStatFilter === 'onDeck' ? 'active' : ''}" onclick="setStatFilter('onDeck')" title="K<15 深度超卖，启动信号最纯粹">
+      <div class="stat-mini-label">⏳ 启动在即</div>
+      <div class="stat-mini-value red">${onDeckCount}</div>
+    </div>
+    <div class="stat-mini yellow ${activeStatFilter === 'approachingPhase' ? 'active' : ''}" onclick="setStatFilter('approachingPhase')" title="K 15-25 接近金叉">
+      <div class="stat-mini-label">🔍 接近启动</div>
+      <div class="stat-mini-value yellow">${approachingCount}</div>
+    </div>
+    <div class="stat-mini blue ${activeStatFilter === 'launchedPhase' ? 'active' : ''}" onclick="setStatFilter('launchedPhase')" title="K 25-40 已启动但未加速">
+      <div class="stat-mini-label">🚀 启动段</div>
+      <div class="stat-mini-value blue">${launchedCount}</div>
+    </div>
     <div class="stat-mini purple ${activeStatFilter === 'accel' ? 'active' : ''}" onclick="setStatFilter('accel')">
-      <div class="stat-mini-label">加速段</div>
+      <div class="stat-mini-label">⚡ 加速段</div>
       <div class="stat-mini-value purple">${accelCount}</div>
     </div>
     <div class="stat-mini gray ${activeStatFilter === 'tail' ? 'active' : ''}" onclick="setStatFilter('tail')">
-      <div class="stat-mini-label">尾部段</div>
+      <div class="stat-mini-label">📉 回落段</div>
       <div class="stat-mini-value gray">${tailCount}</div>
+    </div>
+    <div class="stat-mini orange ${activeStatFilter === 'kdHighPhase' ? 'active' : ''}" onclick="setStatFilter('kdHighPhase')">
+      <div class="stat-mini-label">🌡️ KD高位</div>
+      <div class="stat-mini-value orange">${kdHighPhaseCount}</div>
     </div>
     `}
   `;
