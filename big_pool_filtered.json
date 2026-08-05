@@ -1,0 +1,2146 @@
+[
+  {
+    "code": "sz000820",
+    "name": "神雾节能",
+    "TurnoverRate": "32.30",
+    "MA_20": "3.018",
+    "ClosePrice": "4.26",
+    "ChangePCT": "10.08"
+  },
+  {
+    "code": "sz002879",
+    "name": "长缆科技",
+    "TurnoverRate": "31.90",
+    "MA_20": "15.178",
+    "ClosePrice": "18.76",
+    "ChangePCT": "4.92"
+  },
+  {
+    "code": "sz002354",
+    "name": "天娱数科",
+    "TurnoverRate": "30.69",
+    "MA_20": "7.043",
+    "ClosePrice": "7.88",
+    "ChangePCT": "10.06"
+  },
+  {
+    "code": "sz002361",
+    "name": "神剑股份",
+    "TurnoverRate": "28.65",
+    "MA_20": "10.108",
+    "ClosePrice": "11.10",
+    "ChangePCT": "10.01"
+  },
+  {
+    "code": "sz003001",
+    "name": "中岩大地",
+    "TurnoverRate": "27.69",
+    "MA_20": "17.63",
+    "ClosePrice": "20.91",
+    "ChangePCT": "-1.18"
+  },
+  {
+    "code": "sz002131",
+    "name": "利欧股份",
+    "TurnoverRate": "25.54",
+    "MA_20": "4.239",
+    "ClosePrice": "5.43",
+    "ChangePCT": "5.85"
+  },
+  {
+    "code": "sh603400",
+    "name": "华之杰",
+    "TurnoverRate": "25.39",
+    "MA_20": "39.251",
+    "ClosePrice": "45.03",
+    "ChangePCT": "9.99"
+  },
+  {
+    "code": "sz002902",
+    "name": "铭普光磁",
+    "TurnoverRate": "22.19",
+    "MA_20": "23.107",
+    "ClosePrice": "23.27",
+    "ChangePCT": "1.70"
+  },
+  {
+    "code": "sz002141",
+    "name": "贤丰控股",
+    "TurnoverRate": "21.29",
+    "MA_20": "5.463",
+    "ClosePrice": "5.48",
+    "ChangePCT": "7.45"
+  },
+  {
+    "code": "sz002827",
+    "name": "高争民爆",
+    "TurnoverRate": "21.20",
+    "MA_20": "26.823",
+    "ClosePrice": "41.87",
+    "ChangePCT": "10.01"
+  },
+  {
+    "code": "sh603459",
+    "name": "红板科技",
+    "TurnoverRate": "21.13",
+    "MA_20": "86.692",
+    "ClosePrice": "87.64",
+    "ChangePCT": "10"
+  },
+  {
+    "code": "sh600396",
+    "name": "华电辽能",
+    "TurnoverRate": "20.73",
+    "MA_20": "13.892",
+    "ClosePrice": "16.37",
+    "ChangePCT": "5.54"
+  },
+  {
+    "code": "sz002995",
+    "name": "天地在线",
+    "TurnoverRate": "20.38",
+    "MA_20": "16.078",
+    "ClosePrice": "18.23",
+    "ChangePCT": "3.99"
+  },
+  {
+    "code": "sz000892",
+    "name": "欢瑞世纪",
+    "TurnoverRate": "20.24",
+    "MA_20": "3.582",
+    "ClosePrice": "4.17",
+    "ChangePCT": "10.03"
+  },
+  {
+    "code": "sz002702",
+    "name": "海欣食品",
+    "TurnoverRate": "20.22",
+    "MA_20": "4.448",
+    "ClosePrice": "4.86",
+    "ChangePCT": "2.75"
+  },
+  {
+    "code": "sz000533",
+    "name": "顺钠股份",
+    "TurnoverRate": "20",
+    "MA_20": "9.46",
+    "ClosePrice": "12.60",
+    "ChangePCT": "10.04"
+  },
+  {
+    "code": "sh600664",
+    "name": "哈药股份",
+    "TurnoverRate": "19.42",
+    "MA_20": "5.062",
+    "ClosePrice": "6.45",
+    "ChangePCT": "7.68"
+  },
+  {
+    "code": "sz000566",
+    "name": "海南海药",
+    "TurnoverRate": "18.65",
+    "MA_20": "5.239",
+    "ClosePrice": "5.86",
+    "ChangePCT": "3.35"
+  },
+  {
+    "code": "sh603039",
+    "name": "泛微网络",
+    "TurnoverRate": "18.65",
+    "MA_20": "32.351",
+    "ClosePrice": "41.48",
+    "ChangePCT": "4.51"
+  },
+  {
+    "code": "sz000037",
+    "name": "深南电A",
+    "TurnoverRate": "18.61",
+    "MA_20": "9.103",
+    "ClosePrice": "10.10",
+    "ChangePCT": "0.20"
+  },
+  {
+    "code": "sz002580",
+    "name": "圣阳股份",
+    "TurnoverRate": "18.36",
+    "MA_20": "17.192",
+    "ClosePrice": "19.30",
+    "ChangePCT": "2.99"
+  },
+  {
+    "code": "sh603778",
+    "name": "国晟科技",
+    "TurnoverRate": "17.64",
+    "MA_20": "9.472",
+    "ClosePrice": "10.38",
+    "ChangePCT": "4.43"
+  },
+  {
+    "code": "sz000636",
+    "name": "风华高科",
+    "TurnoverRate": "17.31",
+    "MA_20": "50.161",
+    "ClosePrice": "54.33",
+    "ChangePCT": "4.56"
+  },
+  {
+    "code": "sz002421",
+    "name": "达实智能",
+    "TurnoverRate": "16.75",
+    "MA_20": "2.89",
+    "ClosePrice": "3.48",
+    "ChangePCT": "10.13"
+  },
+  {
+    "code": "sz002828",
+    "name": "贝肯能源",
+    "TurnoverRate": "16.51",
+    "MA_20": "11.973",
+    "ClosePrice": "12.07",
+    "ChangePCT": "2.37"
+  },
+  {
+    "code": "sz002112",
+    "name": "三变科技",
+    "TurnoverRate": "16.22",
+    "MA_20": "15.024",
+    "ClosePrice": "17.42",
+    "ChangePCT": "1.28"
+  },
+  {
+    "code": "sz001258",
+    "name": "立新能源",
+    "TurnoverRate": "16.12",
+    "MA_20": "10.018",
+    "ClosePrice": "13.40",
+    "ChangePCT": "5.26"
+  },
+  {
+    "code": "sz001208",
+    "name": "华菱线缆",
+    "TurnoverRate": "16.12",
+    "MA_20": "13.82",
+    "ClosePrice": "15.28",
+    "ChangePCT": "4.23"
+  },
+  {
+    "code": "sh603696",
+    "name": "安记食品",
+    "TurnoverRate": "15.56",
+    "MA_20": "11.447",
+    "ClosePrice": "13.34",
+    "ChangePCT": "0.98"
+  },
+  {
+    "code": "sz002329",
+    "name": "皇氏集团",
+    "TurnoverRate": "15.50",
+    "MA_20": "3.235",
+    "ClosePrice": "3.31",
+    "ChangePCT": "6.43"
+  },
+  {
+    "code": "sz002585",
+    "name": "双星新材",
+    "TurnoverRate": "15.45",
+    "MA_20": "8.682",
+    "ClosePrice": "8.95",
+    "ChangePCT": "2.87"
+  },
+  {
+    "code": "sz001358",
+    "name": "兴欣新材",
+    "TurnoverRate": "15.34",
+    "MA_20": "22.834",
+    "ClosePrice": "25.36",
+    "ChangePCT": "3.55"
+  },
+  {
+    "code": "sh603466",
+    "name": "风语筑",
+    "TurnoverRate": "15.34",
+    "MA_20": "10.834",
+    "ClosePrice": "11.13",
+    "ChangePCT": "9.98"
+  },
+  {
+    "code": "sz001257",
+    "name": "盛龙股份",
+    "TurnoverRate": "15.29",
+    "MA_20": "24.541",
+    "ClosePrice": "25.31",
+    "ChangePCT": "5.50"
+  },
+  {
+    "code": "sz000676",
+    "name": "智度股份",
+    "TurnoverRate": "14.80",
+    "MA_20": "6.474",
+    "ClosePrice": "7.64",
+    "ChangePCT": "0.66"
+  },
+  {
+    "code": "sh603598",
+    "name": "引力传媒",
+    "TurnoverRate": "14.21",
+    "MA_20": "15.906",
+    "ClosePrice": "18.83",
+    "ChangePCT": "5.73"
+  },
+  {
+    "code": "sz002197",
+    "name": "证通电子",
+    "TurnoverRate": "14.08",
+    "MA_20": "6.279",
+    "ClosePrice": "7.22",
+    "ChangePCT": "4.94"
+  },
+  {
+    "code": "sh600722",
+    "name": "金牛化工",
+    "TurnoverRate": "13.77",
+    "MA_20": "9.394",
+    "ClosePrice": "11.15",
+    "ChangePCT": "3.15"
+  },
+  {
+    "code": "sh600644",
+    "name": "乐山电力",
+    "TurnoverRate": "13.54",
+    "MA_20": "9.076",
+    "ClosePrice": "10.43",
+    "ChangePCT": "1.36"
+  },
+  {
+    "code": "sh603716",
+    "name": "塞力医疗",
+    "TurnoverRate": "13.25",
+    "MA_20": "14.92",
+    "ClosePrice": "16.64",
+    "ChangePCT": "3.42"
+  },
+  {
+    "code": "sz002298",
+    "name": "中电鑫龙",
+    "TurnoverRate": "12.97",
+    "MA_20": "7.583",
+    "ClosePrice": "8.78",
+    "ChangePCT": "-0.90"
+  },
+  {
+    "code": "sh600540",
+    "name": "新赛股份",
+    "TurnoverRate": "12.94",
+    "MA_20": "3.38",
+    "ClosePrice": "3.85",
+    "ChangePCT": "0.52"
+  },
+  {
+    "code": "sz002471",
+    "name": "中超控股",
+    "TurnoverRate": "12.89",
+    "MA_20": "5.20",
+    "ClosePrice": "5.78",
+    "ChangePCT": "1.76"
+  },
+  {
+    "code": "sh603956",
+    "name": "威派格",
+    "TurnoverRate": "12.76",
+    "MA_20": "5.929",
+    "ClosePrice": "7.18",
+    "ChangePCT": "4.21"
+  },
+  {
+    "code": "sh603682",
+    "name": "锦和商管",
+    "TurnoverRate": "12.59",
+    "MA_20": "8.548",
+    "ClosePrice": "10.18",
+    "ChangePCT": "-3.60"
+  },
+  {
+    "code": "sz002896",
+    "name": "中大力德",
+    "TurnoverRate": "12.51",
+    "MA_20": "67.188",
+    "ClosePrice": "76.11",
+    "ChangePCT": "6.06"
+  },
+  {
+    "code": "sh603082",
+    "name": "北自科技",
+    "TurnoverRate": "12.40",
+    "MA_20": "35.13",
+    "ClosePrice": "36.10",
+    "ChangePCT": "1.04"
+  },
+  {
+    "code": "sz002639",
+    "name": "雪人集团",
+    "TurnoverRate": "12.29",
+    "MA_20": "11.764",
+    "ClosePrice": "12.78",
+    "ChangePCT": "1.35"
+  },
+  {
+    "code": "sh600756",
+    "name": "浪潮软件",
+    "TurnoverRate": "12.20",
+    "MA_20": "14.676",
+    "ClosePrice": "16.18",
+    "ChangePCT": "-2.47"
+  },
+  {
+    "code": "sh605068",
+    "name": "明新旭腾",
+    "TurnoverRate": "12.12",
+    "MA_20": "16.478",
+    "ClosePrice": "21.47",
+    "ChangePCT": "9.99"
+  },
+  {
+    "code": "sh600693",
+    "name": "东百集团",
+    "TurnoverRate": "12.05",
+    "MA_20": "8.285",
+    "ClosePrice": "9.66",
+    "ChangePCT": "2.88"
+  },
+  {
+    "code": "sz002366",
+    "name": "融发核电",
+    "TurnoverRate": "12.01",
+    "MA_20": "5.396",
+    "ClosePrice": "6.44",
+    "ChangePCT": "2.06"
+  },
+  {
+    "code": "sz001229",
+    "name": "魅视科技",
+    "TurnoverRate": "11.99",
+    "MA_20": "38.367",
+    "ClosePrice": "38.48",
+    "ChangePCT": "10.01"
+  },
+  {
+    "code": "sh600793",
+    "name": "宜宾纸业",
+    "TurnoverRate": "11.95",
+    "MA_20": "13.96",
+    "ClosePrice": "14.78",
+    "ChangePCT": "4.23"
+  },
+  {
+    "code": "sh600986",
+    "name": "浙文互联",
+    "TurnoverRate": "11.61",
+    "MA_20": "6.899",
+    "ClosePrice": "8.08",
+    "ChangePCT": "2.41"
+  },
+  {
+    "code": "sz002659",
+    "name": "凯文教育",
+    "TurnoverRate": "11.43",
+    "MA_20": "4.063",
+    "ClosePrice": "5.07",
+    "ChangePCT": "9.98"
+  },
+  {
+    "code": "sz002882",
+    "name": "金龙羽",
+    "TurnoverRate": "11.12",
+    "MA_20": "18.47",
+    "ClosePrice": "23.09",
+    "ChangePCT": "-3.71"
+  },
+  {
+    "code": "sz000779",
+    "name": "甘咨询",
+    "TurnoverRate": "11.06",
+    "MA_20": "11.042",
+    "ClosePrice": "13.63",
+    "ChangePCT": "2.79"
+  },
+  {
+    "code": "sz002606",
+    "name": "大连电瓷",
+    "TurnoverRate": "10.96",
+    "MA_20": "13.585",
+    "ClosePrice": "14.97",
+    "ChangePCT": "3.24"
+  },
+  {
+    "code": "sz002115",
+    "name": "三维通信",
+    "TurnoverRate": "10.95",
+    "MA_20": "10.896",
+    "ClosePrice": "11.60",
+    "ChangePCT": "3.02"
+  },
+  {
+    "code": "sh600815",
+    "name": "厦工股份",
+    "TurnoverRate": "10.94",
+    "MA_20": "2.718",
+    "ClosePrice": "3.49",
+    "ChangePCT": "9.06"
+  },
+  {
+    "code": "sh600468",
+    "name": "百利电气",
+    "TurnoverRate": "10.86",
+    "MA_20": "5.409",
+    "ClosePrice": "6.72",
+    "ChangePCT": "8.04"
+  },
+  {
+    "code": "sz002173",
+    "name": "创新医疗",
+    "TurnoverRate": "10.67",
+    "MA_20": "18.443",
+    "ClosePrice": "20.92",
+    "ChangePCT": "9.99"
+  },
+  {
+    "code": "sz000967",
+    "name": "盈峰环境",
+    "TurnoverRate": "10.54",
+    "MA_20": "7.884",
+    "ClosePrice": "9.09",
+    "ChangePCT": "5.21"
+  },
+  {
+    "code": "sz000428",
+    "name": "华天酒店",
+    "TurnoverRate": "10.43",
+    "MA_20": "3.358",
+    "ClosePrice": "4",
+    "ChangePCT": "0.25"
+  },
+  {
+    "code": "sz003032",
+    "name": "传智教育",
+    "TurnoverRate": "10.40",
+    "MA_20": "6.334",
+    "ClosePrice": "10.66",
+    "ChangePCT": "10.01"
+  },
+  {
+    "code": "sh600192",
+    "name": "长城电工",
+    "TurnoverRate": "10.31",
+    "MA_20": "6.375",
+    "ClosePrice": "7.70",
+    "ChangePCT": "6.65"
+  },
+  {
+    "code": "sz002735",
+    "name": "王子新材",
+    "TurnoverRate": "10.30",
+    "MA_20": "10.93",
+    "ClosePrice": "11.42",
+    "ChangePCT": "1.15"
+  },
+  {
+    "code": "sh605179",
+    "name": "一鸣食品",
+    "TurnoverRate": "10.29",
+    "MA_20": "15.091",
+    "ClosePrice": "21.69",
+    "ChangePCT": "1.78"
+  },
+  {
+    "code": "sh600103",
+    "name": "青山纸业",
+    "TurnoverRate": "10.12",
+    "MA_20": "2.745",
+    "ClosePrice": "3.08",
+    "ChangePCT": "5.48"
+  },
+  {
+    "code": "sz000759",
+    "name": "中百集团",
+    "TurnoverRate": "10.08",
+    "MA_20": "6.783",
+    "ClosePrice": "6.91",
+    "ChangePCT": "0.73"
+  },
+  {
+    "code": "sz002757",
+    "name": "南兴股份",
+    "TurnoverRate": "10.07",
+    "MA_20": "16.285",
+    "ClosePrice": "17.42",
+    "ChangePCT": "4.56"
+  },
+  {
+    "code": "sz000710",
+    "name": "贝瑞基因",
+    "TurnoverRate": "10.03",
+    "MA_20": "7.959",
+    "ClosePrice": "9.24",
+    "ChangePCT": "10"
+  },
+  {
+    "code": "sh603399",
+    "name": "永杉锂业",
+    "TurnoverRate": "9.95",
+    "MA_20": "14.579",
+    "ClosePrice": "14.99",
+    "ChangePCT": "1.35"
+  },
+  {
+    "code": "sh603533",
+    "name": "掌阅科技",
+    "TurnoverRate": "9.91",
+    "MA_20": "19.561",
+    "ClosePrice": "23.12",
+    "ChangePCT": "7.79"
+  },
+  {
+    "code": "sz000592",
+    "name": "平潭发展",
+    "TurnoverRate": "9.73",
+    "MA_20": "5.754",
+    "ClosePrice": "6.43",
+    "ChangePCT": "3.71"
+  },
+  {
+    "code": "sh600376",
+    "name": "首开股份",
+    "TurnoverRate": "9.73",
+    "MA_20": "3.512",
+    "ClosePrice": "4.23",
+    "ChangePCT": "0.24"
+  },
+  {
+    "code": "sh600844",
+    "name": "金煤科技",
+    "TurnoverRate": "9.70",
+    "MA_20": "2.942",
+    "ClosePrice": "3.48",
+    "ChangePCT": "2.05"
+  },
+  {
+    "code": "sh600227",
+    "name": "赤天化",
+    "TurnoverRate": "9.63",
+    "MA_20": "2.995",
+    "ClosePrice": "3.27",
+    "ChangePCT": "0.31"
+  },
+  {
+    "code": "sz002309",
+    "name": "中利集团",
+    "TurnoverRate": "9.62",
+    "MA_20": "2.875",
+    "ClosePrice": "3.30",
+    "ChangePCT": "0.92"
+  },
+  {
+    "code": "sh600228",
+    "name": "返利科技",
+    "TurnoverRate": "9.60",
+    "MA_20": "6.537",
+    "ClosePrice": "7.83",
+    "ChangePCT": "9.97"
+  },
+  {
+    "code": "sh603679",
+    "name": "华体科技",
+    "TurnoverRate": "9.46",
+    "MA_20": "17.785",
+    "ClosePrice": "21.58",
+    "ChangePCT": "2.32"
+  },
+  {
+    "code": "sh603435",
+    "name": "嘉德利",
+    "TurnoverRate": "9.46",
+    "MA_20": "47.677",
+    "ClosePrice": "49.84",
+    "ChangePCT": "10"
+  },
+  {
+    "code": "sz002279",
+    "name": "久其软件",
+    "TurnoverRate": "9.44",
+    "MA_20": "6.094",
+    "ClosePrice": "7",
+    "ChangePCT": "1.45"
+  },
+  {
+    "code": "sh605189",
+    "name": "富春染织",
+    "TurnoverRate": "9.42",
+    "MA_20": "14.846",
+    "ClosePrice": "15.95",
+    "ChangePCT": "-0.87"
+  },
+  {
+    "code": "sz002229",
+    "name": "鸿博股份",
+    "TurnoverRate": "9.37",
+    "MA_20": "9.789",
+    "ClosePrice": "11.06",
+    "ChangePCT": "4.05"
+  },
+  {
+    "code": "sh600936",
+    "name": "北投科技",
+    "TurnoverRate": "9.35",
+    "MA_20": "4.938",
+    "ClosePrice": "5.87",
+    "ChangePCT": "0.51"
+  },
+  {
+    "code": "sz002303",
+    "name": "美盈森",
+    "TurnoverRate": "9.31",
+    "MA_20": "4.468",
+    "ClosePrice": "4.91",
+    "ChangePCT": "10.09"
+  },
+  {
+    "code": "sz002703",
+    "name": "浙江世宝",
+    "TurnoverRate": "9.30",
+    "MA_20": "13.04",
+    "ClosePrice": "14.80",
+    "ChangePCT": "0.41"
+  },
+  {
+    "code": "sz002083",
+    "name": "孚日股份",
+    "TurnoverRate": "9.20",
+    "MA_20": "10.348",
+    "ClosePrice": "11.29",
+    "ChangePCT": "2.54"
+  },
+  {
+    "code": "sz002388",
+    "name": "新亚制程",
+    "TurnoverRate": "9.19",
+    "MA_20": "4.368",
+    "ClosePrice": "4.82",
+    "ChangePCT": "2.55"
+  },
+  {
+    "code": "sz002575",
+    "name": "群兴玩具",
+    "TurnoverRate": "9.17",
+    "MA_20": "4.764",
+    "ClosePrice": "5.37",
+    "ChangePCT": "4.68"
+  },
+  {
+    "code": "sz002365",
+    "name": "永安药业",
+    "TurnoverRate": "9.16",
+    "MA_20": "11.982",
+    "ClosePrice": "12.77",
+    "ChangePCT": "1.19"
+  },
+  {
+    "code": "sh603220",
+    "name": "中贝通信",
+    "TurnoverRate": "9.11",
+    "MA_20": "18.568",
+    "ClosePrice": "19.03",
+    "ChangePCT": "0.79"
+  },
+  {
+    "code": "sz002438",
+    "name": "江苏神通",
+    "TurnoverRate": "9.05",
+    "MA_20": "12.729",
+    "ClosePrice": "14.50",
+    "ChangePCT": "3.79"
+  },
+  {
+    "code": "sz002546",
+    "name": "新联电子",
+    "TurnoverRate": "9",
+    "MA_20": "8.125",
+    "ClosePrice": "8.81",
+    "ChangePCT": "0.11"
+  },
+  {
+    "code": "sz002199",
+    "name": "东晶电子",
+    "TurnoverRate": "8.86",
+    "MA_20": "11.837",
+    "ClosePrice": "13.53",
+    "ChangePCT": "10"
+  },
+  {
+    "code": "sh603278",
+    "name": "大业股份",
+    "TurnoverRate": "8.82",
+    "MA_20": "8.863",
+    "ClosePrice": "9.24",
+    "ChangePCT": "-0.65"
+  },
+  {
+    "code": "sh600744",
+    "name": "华银电力",
+    "TurnoverRate": "8.77",
+    "MA_20": "6.574",
+    "ClosePrice": "7.29",
+    "ChangePCT": "-0.55"
+  },
+  {
+    "code": "sz002379",
+    "name": "宏桥控股",
+    "TurnoverRate": "8.74",
+    "MA_20": "18.272",
+    "ClosePrice": "19.25",
+    "ChangePCT": "3"
+  },
+  {
+    "code": "sz002300",
+    "name": "太阳电缆",
+    "TurnoverRate": "8.60",
+    "MA_20": "6.53",
+    "ClosePrice": "7.40",
+    "ChangePCT": "0.68"
+  },
+  {
+    "code": "sh603334",
+    "name": "丰倍生物",
+    "TurnoverRate": "8.60",
+    "MA_20": "31.723",
+    "ClosePrice": "33",
+    "ChangePCT": "-2.16"
+  },
+  {
+    "code": "sz002176",
+    "name": "江特电机",
+    "TurnoverRate": "8.59",
+    "MA_20": "8.178",
+    "ClosePrice": "9.27",
+    "ChangePCT": "2.66"
+  },
+  {
+    "code": "sz002768",
+    "name": "国恩股份",
+    "TurnoverRate": "8.54",
+    "MA_20": "51.451",
+    "ClosePrice": "53.60",
+    "ChangePCT": "5.30"
+  },
+  {
+    "code": "sz002149",
+    "name": "西部材料",
+    "TurnoverRate": "8.50",
+    "MA_20": "35.49",
+    "ClosePrice": "35.80",
+    "ChangePCT": "2.58"
+  },
+  {
+    "code": "sz001223",
+    "name": "欧克科技",
+    "TurnoverRate": "8.41",
+    "MA_20": "32.604",
+    "ClosePrice": "39.46",
+    "ChangePCT": "9.10"
+  },
+  {
+    "code": "sh600589",
+    "name": "大位科技",
+    "TurnoverRate": "8.41",
+    "MA_20": "7.595",
+    "ClosePrice": "8.38",
+    "ChangePCT": "5.67"
+  },
+  {
+    "code": "sz001376",
+    "name": "百通能源",
+    "TurnoverRate": "8.33",
+    "MA_20": "10.293",
+    "ClosePrice": "11.34",
+    "ChangePCT": "-0.87"
+  },
+  {
+    "code": "sz002517",
+    "name": "恺英网络",
+    "TurnoverRate": "8.15",
+    "MA_20": "16.457",
+    "ClosePrice": "18.58",
+    "ChangePCT": "3.22"
+  },
+  {
+    "code": "sh600661",
+    "name": "昂立教育",
+    "TurnoverRate": "8.15",
+    "MA_20": "7.902",
+    "ClosePrice": "9.37",
+    "ChangePCT": "-1.47"
+  },
+  {
+    "code": "sh603580",
+    "name": "艾艾精工",
+    "TurnoverRate": "8.14",
+    "MA_20": "42.268",
+    "ClosePrice": "53.79",
+    "ChangePCT": "10"
+  },
+  {
+    "code": "sz001382",
+    "name": "新亚电缆",
+    "TurnoverRate": "8.09",
+    "MA_20": "16.064",
+    "ClosePrice": "17.73",
+    "ChangePCT": "0.74"
+  },
+  {
+    "code": "sh603601",
+    "name": "再升科技",
+    "TurnoverRate": "8.06",
+    "MA_20": "8.68",
+    "ClosePrice": "8.79",
+    "ChangePCT": "3.41"
+  },
+  {
+    "code": "sh600513",
+    "name": "联环药业",
+    "TurnoverRate": "8.05",
+    "MA_20": "16.327",
+    "ClosePrice": "17.22",
+    "ChangePCT": "1.12"
+  },
+  {
+    "code": "sz000981",
+    "name": "山子高科",
+    "TurnoverRate": "8.02",
+    "MA_20": "2.577",
+    "ClosePrice": "2.88",
+    "ChangePCT": "5.49"
+  },
+  {
+    "code": "sz002400",
+    "name": "省广集团",
+    "TurnoverRate": "8.01",
+    "MA_20": "6.127",
+    "ClosePrice": "6.99",
+    "ChangePCT": "2.79"
+  },
+  {
+    "code": "sh603619",
+    "name": "中曼石油",
+    "TurnoverRate": "7.98",
+    "MA_20": "20.412",
+    "ClosePrice": "21.66",
+    "ChangePCT": "2.27"
+  },
+  {
+    "code": "sh600379",
+    "name": "宝光股份",
+    "TurnoverRate": "7.94",
+    "MA_20": "12.106",
+    "ClosePrice": "12.35",
+    "ChangePCT": "9.97"
+  },
+  {
+    "code": "sz000681",
+    "name": "视觉中国",
+    "TurnoverRate": "7.92",
+    "MA_20": "17.175",
+    "ClosePrice": "18.77",
+    "ChangePCT": "3.76"
+  },
+  {
+    "code": "sh603496",
+    "name": "恒为科技",
+    "TurnoverRate": "7.86",
+    "MA_20": "24.884",
+    "ClosePrice": "25.69",
+    "ChangePCT": "7.09"
+  },
+  {
+    "code": "sz000889",
+    "name": "中嘉博创",
+    "TurnoverRate": "7.81",
+    "MA_20": "3.468",
+    "ClosePrice": "3.92",
+    "ChangePCT": "4.53"
+  },
+  {
+    "code": "sz000603",
+    "name": "盛达资源",
+    "TurnoverRate": "7.80",
+    "MA_20": "22.832",
+    "ClosePrice": "26.50",
+    "ChangePCT": "3.03"
+  },
+  {
+    "code": "sz001225",
+    "name": "和泰机电",
+    "TurnoverRate": "7.72",
+    "MA_20": "38.87",
+    "ClosePrice": "41.11",
+    "ChangePCT": "0.29"
+  },
+  {
+    "code": "sz002291",
+    "name": "遥望科技",
+    "TurnoverRate": "7.69",
+    "MA_20": "4.901",
+    "ClosePrice": "5.76",
+    "ChangePCT": "9.92"
+  },
+  {
+    "code": "sz002900",
+    "name": "哈三联",
+    "TurnoverRate": "7.65",
+    "MA_20": "11.077",
+    "ClosePrice": "12.40",
+    "ChangePCT": "10.03"
+  },
+  {
+    "code": "sh603318",
+    "name": "水发燃气",
+    "TurnoverRate": "7.64",
+    "MA_20": "8.399",
+    "ClosePrice": "8.77",
+    "ChangePCT": "2.45"
+  },
+  {
+    "code": "sz000802",
+    "name": "北京文化",
+    "TurnoverRate": "7.60",
+    "MA_20": "3.773",
+    "ClosePrice": "4.23",
+    "ChangePCT": "2.67"
+  },
+  {
+    "code": "sh601678",
+    "name": "滨化股份",
+    "TurnoverRate": "7.56",
+    "MA_20": "5.888",
+    "ClosePrice": "6.46",
+    "ChangePCT": "5.04"
+  },
+  {
+    "code": "sh605388",
+    "name": "均瑶健康",
+    "TurnoverRate": "7.51",
+    "MA_20": "5.184",
+    "ClosePrice": "5.96",
+    "ChangePCT": "0.85"
+  },
+  {
+    "code": "sz002009",
+    "name": "天奇股份",
+    "TurnoverRate": "7.48",
+    "MA_20": "16.787",
+    "ClosePrice": "18.09",
+    "ChangePCT": "5.60"
+  },
+  {
+    "code": "sz000948",
+    "name": "南天信息",
+    "TurnoverRate": "7.45",
+    "MA_20": "14.068",
+    "ClosePrice": "15.24",
+    "ChangePCT": "0.33"
+  },
+  {
+    "code": "sz000608",
+    "name": "阳光股份",
+    "TurnoverRate": "7.45",
+    "MA_20": "6.247",
+    "ClosePrice": "6.59",
+    "ChangePCT": "-1.79"
+  },
+  {
+    "code": "sz003005",
+    "name": "竞业达",
+    "TurnoverRate": "7.43",
+    "MA_20": "12.39",
+    "ClosePrice": "13.84",
+    "ChangePCT": "2.67"
+  },
+  {
+    "code": "sz002612",
+    "name": "朗姿股份",
+    "TurnoverRate": "7.42",
+    "MA_20": "12.49",
+    "ClosePrice": "14.92",
+    "ChangePCT": "1.08"
+  },
+  {
+    "code": "sh603373",
+    "name": "安邦护卫",
+    "TurnoverRate": "7.37",
+    "MA_20": "33.614",
+    "ClosePrice": "36.53",
+    "ChangePCT": "10"
+  },
+  {
+    "code": "sz002498",
+    "name": "汉缆股份",
+    "TurnoverRate": "7.36",
+    "MA_20": "6.199",
+    "ClosePrice": "7.38",
+    "ChangePCT": "1.93"
+  },
+  {
+    "code": "sz002846",
+    "name": "英联股份",
+    "TurnoverRate": "7.31",
+    "MA_20": "9.77",
+    "ClosePrice": "10.48",
+    "ChangePCT": "2.54"
+  },
+  {
+    "code": "sz002566",
+    "name": "益盛药业",
+    "TurnoverRate": "7.29",
+    "MA_20": "6.32",
+    "ClosePrice": "6.45",
+    "ChangePCT": "-2.12"
+  },
+  {
+    "code": "sz002212",
+    "name": "天融信",
+    "TurnoverRate": "7.28",
+    "MA_20": "5.811",
+    "ClosePrice": "6.66",
+    "ChangePCT": "0.91"
+  },
+  {
+    "code": "sh603918",
+    "name": "金桥信息",
+    "TurnoverRate": "7.26",
+    "MA_20": "9.912",
+    "ClosePrice": "11.14",
+    "ChangePCT": "-0.18"
+  },
+  {
+    "code": "sz002012",
+    "name": "凯恩股份",
+    "TurnoverRate": "7.25",
+    "MA_20": "5.684",
+    "ClosePrice": "6.40",
+    "ChangePCT": "5.61"
+  },
+  {
+    "code": "sz001393",
+    "name": "维通利",
+    "TurnoverRate": "7.21",
+    "MA_20": "44.136",
+    "ClosePrice": "44.99",
+    "ChangePCT": "1.93"
+  },
+  {
+    "code": "sz002929",
+    "name": "润建股份",
+    "TurnoverRate": "7.18",
+    "MA_20": "52.764",
+    "ClosePrice": "54.01",
+    "ChangePCT": "10"
+  },
+  {
+    "code": "sz002866",
+    "name": "传艺科技",
+    "TurnoverRate": "7.18",
+    "MA_20": "14.414",
+    "ClosePrice": "15.26",
+    "ChangePCT": "1.26"
+  },
+  {
+    "code": "sh600961",
+    "name": "株冶集团",
+    "TurnoverRate": "7.18",
+    "MA_20": "23.846",
+    "ClosePrice": "24.33",
+    "ChangePCT": "6.24"
+  },
+  {
+    "code": "sz002695",
+    "name": "煌上煌",
+    "TurnoverRate": "7.17",
+    "MA_20": "9.565",
+    "ClosePrice": "10.34",
+    "ChangePCT": "-3.45"
+  },
+  {
+    "code": "sz002412",
+    "name": "汉森制药",
+    "TurnoverRate": "7.17",
+    "MA_20": "6.614",
+    "ClosePrice": "7.01",
+    "ChangePCT": "3.55"
+  },
+  {
+    "code": "sh603567",
+    "name": "珍宝岛",
+    "TurnoverRate": "7.16",
+    "MA_20": "5.755",
+    "ClosePrice": "6.67",
+    "ChangePCT": "10.07"
+  },
+  {
+    "code": "sh603162",
+    "name": "海通发展",
+    "TurnoverRate": "7.16",
+    "MA_20": "10.561",
+    "ClosePrice": "10.73",
+    "ChangePCT": "0.85"
+  },
+  {
+    "code": "sz001317",
+    "name": "三羊马",
+    "TurnoverRate": "7.14",
+    "MA_20": "48.595",
+    "ClosePrice": "54.08",
+    "ChangePCT": "0.09"
+  },
+  {
+    "code": "sz000571",
+    "name": "新大洲A",
+    "TurnoverRate": "7.14",
+    "MA_20": "6.086",
+    "ClosePrice": "6.69",
+    "ChangePCT": "3.72"
+  },
+  {
+    "code": "sz002693",
+    "name": "双成药业",
+    "TurnoverRate": "7.12",
+    "MA_20": "9.244",
+    "ClosePrice": "9.67",
+    "ChangePCT": "10.01"
+  },
+  {
+    "code": "sz002969",
+    "name": "嘉美包装",
+    "TurnoverRate": "7.05",
+    "MA_20": "11.862",
+    "ClosePrice": "12.96",
+    "ChangePCT": "1.01"
+  },
+  {
+    "code": "sh603391",
+    "name": "力聚热能",
+    "TurnoverRate": "7.05",
+    "MA_20": "53.884",
+    "ClosePrice": "58.86",
+    "ChangePCT": "9.45"
+  },
+  {
+    "code": "sz000995",
+    "name": "皇台酒业",
+    "TurnoverRate": "6.92",
+    "MA_20": "9.851",
+    "ClosePrice": "10.62",
+    "ChangePCT": "0.57"
+  },
+  {
+    "code": "sh601616",
+    "name": "广电电气",
+    "TurnoverRate": "6.89",
+    "MA_20": "3.421",
+    "ClosePrice": "3.89",
+    "ChangePCT": "-0.26"
+  },
+  {
+    "code": "sz002640",
+    "name": "跨境通",
+    "TurnoverRate": "6.87",
+    "MA_20": "3.173",
+    "ClosePrice": "3.45",
+    "ChangePCT": "1.47"
+  },
+  {
+    "code": "sz002138",
+    "name": "顺络电子",
+    "TurnoverRate": "6.87",
+    "MA_20": "45.803",
+    "ClosePrice": "47.23",
+    "ChangePCT": "8.55"
+  },
+  {
+    "code": "sz002582",
+    "name": "好想你",
+    "TurnoverRate": "6.86",
+    "MA_20": "9.366",
+    "ClosePrice": "9.99",
+    "ChangePCT": "-0.30"
+  },
+  {
+    "code": "sh600712",
+    "name": "南宁百货",
+    "TurnoverRate": "6.85",
+    "MA_20": "4.781",
+    "ClosePrice": "5.52",
+    "ChangePCT": "9.96"
+  },
+  {
+    "code": "sz002104",
+    "name": "恒宝股份",
+    "TurnoverRate": "6.82",
+    "MA_20": "9.729",
+    "ClosePrice": "10.60",
+    "ChangePCT": "1.05"
+  },
+  {
+    "code": "sz002103",
+    "name": "广博股份",
+    "TurnoverRate": "6.81",
+    "MA_20": "6.179",
+    "ClosePrice": "6.86",
+    "ChangePCT": "3.31"
+  },
+  {
+    "code": "sh600580",
+    "name": "卧龙电驱",
+    "TurnoverRate": "6.76",
+    "MA_20": "30.936",
+    "ClosePrice": "35.67",
+    "ChangePCT": "3.36"
+  },
+  {
+    "code": "sz002196",
+    "name": "方正电机",
+    "TurnoverRate": "6.69",
+    "MA_20": "10.576",
+    "ClosePrice": "10.97",
+    "ChangePCT": "0.18"
+  },
+  {
+    "code": "sz000506",
+    "name": "招金黄金",
+    "TurnoverRate": "6.67",
+    "MA_20": "12.997",
+    "ClosePrice": "14.82",
+    "ChangePCT": "0.75"
+  },
+  {
+    "code": "sz002657",
+    "name": "中科金财",
+    "TurnoverRate": "6.65",
+    "MA_20": "14.697",
+    "ClosePrice": "15.79",
+    "ChangePCT": "2.80"
+  },
+  {
+    "code": "sh600162",
+    "name": "香江控股",
+    "TurnoverRate": "6.65",
+    "MA_20": "2.685",
+    "ClosePrice": "3.24",
+    "ChangePCT": "4.52"
+  },
+  {
+    "code": "sz002558",
+    "name": "巨人网络",
+    "TurnoverRate": "6.61",
+    "MA_20": "27.986",
+    "ClosePrice": "29.94",
+    "ChangePCT": "2.92"
+  },
+  {
+    "code": "sh603721",
+    "name": "中广天择",
+    "TurnoverRate": "6.58",
+    "MA_20": "15.891",
+    "ClosePrice": "18.77",
+    "ChangePCT": "6.83"
+  },
+  {
+    "code": "sz002829",
+    "name": "星网宇达",
+    "TurnoverRate": "6.56",
+    "MA_20": "19.642",
+    "ClosePrice": "20.38",
+    "ChangePCT": "1.29"
+  },
+  {
+    "code": "sz002560",
+    "name": "通达股份",
+    "TurnoverRate": "6.47",
+    "MA_20": "6.114",
+    "ClosePrice": "6.43",
+    "ChangePCT": "1.26"
+  },
+  {
+    "code": "sh603007",
+    "name": "顺景科技",
+    "TurnoverRate": "6.47",
+    "MA_20": "4.719",
+    "ClosePrice": "4.81",
+    "ChangePCT": "4.57"
+  },
+  {
+    "code": "sz002058",
+    "name": "威尔泰",
+    "TurnoverRate": "6.30",
+    "MA_20": "16.261",
+    "ClosePrice": "16.72",
+    "ChangePCT": "-1.30"
+  },
+  {
+    "code": "sh603042",
+    "name": "华脉科技",
+    "TurnoverRate": "6.30",
+    "MA_20": "11.473",
+    "ClosePrice": "12.42",
+    "ChangePCT": "5.17"
+  },
+  {
+    "code": "sh605488",
+    "name": "福莱新材",
+    "TurnoverRate": "6.27",
+    "MA_20": "25.677",
+    "ClosePrice": "27.11",
+    "ChangePCT": "0.48"
+  },
+  {
+    "code": "sh603881",
+    "name": "数据港",
+    "TurnoverRate": "6.27",
+    "MA_20": "24.831",
+    "ClosePrice": "26.24",
+    "ChangePCT": "3.31"
+  },
+  {
+    "code": "sh600351",
+    "name": "亚宝药业",
+    "TurnoverRate": "6.20",
+    "MA_20": "6.519",
+    "ClosePrice": "6.88",
+    "ChangePCT": "-0.43"
+  },
+  {
+    "code": "sz002440",
+    "name": "闰土股份",
+    "TurnoverRate": "6.15",
+    "MA_20": "11.748",
+    "ClosePrice": "12.75",
+    "ChangePCT": "-1.85"
+  },
+  {
+    "code": "sh603980",
+    "name": "吉华集团",
+    "TurnoverRate": "6.14",
+    "MA_20": "6.202",
+    "ClosePrice": "6.75",
+    "ChangePCT": "1.66"
+  },
+  {
+    "code": "sz002292",
+    "name": "奥飞娱乐",
+    "TurnoverRate": "6.12",
+    "MA_20": "7.736",
+    "ClosePrice": "8.34",
+    "ChangePCT": "-0.24"
+  },
+  {
+    "code": "sh603261",
+    "name": "立航科技",
+    "TurnoverRate": "6.09",
+    "MA_20": "47.949",
+    "ClosePrice": "49.85",
+    "ChangePCT": "-0.16"
+  },
+  {
+    "code": "sz002015",
+    "name": "协鑫能科",
+    "TurnoverRate": "6.08",
+    "MA_20": "14.51",
+    "ClosePrice": "16.10",
+    "ChangePCT": "2.81"
+  },
+  {
+    "code": "sh603798",
+    "name": "康普顿",
+    "TurnoverRate": "6.05",
+    "MA_20": "11.931",
+    "ClosePrice": "13.23",
+    "ChangePCT": "6.35"
+  },
+  {
+    "code": "sz000722",
+    "name": "湖南发展",
+    "TurnoverRate": "6.03",
+    "MA_20": "12.684",
+    "ClosePrice": "13.55",
+    "ChangePCT": "3.36"
+  },
+  {
+    "code": "sz000526",
+    "name": "学大教育",
+    "TurnoverRate": "6.03",
+    "MA_20": "30.816",
+    "ClosePrice": "35.10",
+    "ChangePCT": "-1.71"
+  },
+  {
+    "code": "sh603284",
+    "name": "林平发展",
+    "TurnoverRate": "6",
+    "MA_20": "38.182",
+    "ClosePrice": "39.08",
+    "ChangePCT": "-0.51"
+  },
+  {
+    "code": "sz002031",
+    "name": "巨轮智能",
+    "TurnoverRate": "5.98",
+    "MA_20": "4.949",
+    "ClosePrice": "5.25",
+    "ChangePCT": "0.77"
+  },
+  {
+    "code": "sh603158",
+    "name": "腾龙股份",
+    "TurnoverRate": "5.97",
+    "MA_20": "9.578",
+    "ClosePrice": "9.95",
+    "ChangePCT": "6.65"
+  },
+  {
+    "code": "sh603178",
+    "name": "圣龙股份",
+    "TurnoverRate": "5.95",
+    "MA_20": "16.073",
+    "ClosePrice": "17.13",
+    "ChangePCT": "0"
+  },
+  {
+    "code": "sz003007",
+    "name": "直真科技",
+    "TurnoverRate": "5.92",
+    "MA_20": "34.776",
+    "ClosePrice": "37.65",
+    "ChangePCT": "6.45"
+  },
+  {
+    "code": "sh600775",
+    "name": "南京熊猫",
+    "TurnoverRate": "5.91",
+    "MA_20": "9.115",
+    "ClosePrice": "9.97",
+    "ChangePCT": "2.26"
+  },
+  {
+    "code": "sz002067",
+    "name": "景兴纸业",
+    "TurnoverRate": "5.85",
+    "MA_20": "4.115",
+    "ClosePrice": "4.52",
+    "ChangePCT": "-1.31"
+  },
+  {
+    "code": "sh603110",
+    "name": "东方材料",
+    "TurnoverRate": "5.84",
+    "MA_20": "21.37",
+    "ClosePrice": "22.45",
+    "ChangePCT": "2.84"
+  },
+  {
+    "code": "sh600671",
+    "name": "天目药业",
+    "TurnoverRate": "5.84",
+    "MA_20": "20.202",
+    "ClosePrice": "22.17",
+    "ChangePCT": "7.05"
+  },
+  {
+    "code": "sz001326",
+    "name": "联域股份",
+    "TurnoverRate": "5.82",
+    "MA_20": "48.648",
+    "ClosePrice": "51.66",
+    "ChangePCT": "10.01"
+  },
+  {
+    "code": "sz001396",
+    "name": "誉帆科技",
+    "TurnoverRate": "5.81",
+    "MA_20": "32.41",
+    "ClosePrice": "34.53",
+    "ChangePCT": "0.99"
+  },
+  {
+    "code": "sh600602",
+    "name": "云赛智联",
+    "TurnoverRate": "5.76",
+    "MA_20": "17.698",
+    "ClosePrice": "18.55",
+    "ChangePCT": "5.10"
+  },
+  {
+    "code": "sh603200",
+    "name": "上海洗霸",
+    "TurnoverRate": "5.75",
+    "MA_20": "35.385",
+    "ClosePrice": "37.40",
+    "ChangePCT": "1.77"
+  },
+  {
+    "code": "sz002681",
+    "name": "奋达科技",
+    "TurnoverRate": "5.74",
+    "MA_20": "4.539",
+    "ClosePrice": "4.72",
+    "ChangePCT": "-0.84"
+  },
+  {
+    "code": "sh601611",
+    "name": "中国核建",
+    "TurnoverRate": "5.74",
+    "MA_20": "10.298",
+    "ClosePrice": "12.12",
+    "ChangePCT": "4.39"
+  },
+  {
+    "code": "sz002036",
+    "name": "联创电子",
+    "TurnoverRate": "5.72",
+    "MA_20": "6.761",
+    "ClosePrice": "7.09",
+    "ChangePCT": "3.05"
+  },
+  {
+    "code": "sz002165",
+    "name": "红 宝 丽",
+    "TurnoverRate": "5.70",
+    "MA_20": "6.059",
+    "ClosePrice": "6.60",
+    "ChangePCT": "0.46"
+  },
+  {
+    "code": "sh603402",
+    "name": "陕西旅游",
+    "TurnoverRate": "5.70",
+    "MA_20": "62.584",
+    "ClosePrice": "65.60",
+    "ChangePCT": "-0.67"
+  },
+  {
+    "code": "sh600301",
+    "name": "华锡有色",
+    "TurnoverRate": "5.70",
+    "MA_20": "42.778",
+    "ClosePrice": "45",
+    "ChangePCT": "8.10"
+  },
+  {
+    "code": "sh605287",
+    "name": "德才股份",
+    "TurnoverRate": "5.69",
+    "MA_20": "34.982",
+    "ClosePrice": "37.80",
+    "ChangePCT": "10.01"
+  },
+  {
+    "code": "sh600354",
+    "name": "敦煌种业",
+    "TurnoverRate": "5.69",
+    "MA_20": "5.567",
+    "ClosePrice": "5.97",
+    "ChangePCT": "-2.29"
+  },
+  {
+    "code": "sh603036",
+    "name": "如通股份",
+    "TurnoverRate": "5.62",
+    "MA_20": "12.151",
+    "ClosePrice": "12.89",
+    "ChangePCT": "1.02"
+  },
+  {
+    "code": "sh603376",
+    "name": "大明电子",
+    "TurnoverRate": "5.61",
+    "MA_20": "24.303",
+    "ClosePrice": "26.18",
+    "ChangePCT": "0.31"
+  },
+  {
+    "code": "sh601606",
+    "name": "长城军工",
+    "TurnoverRate": "5.60",
+    "MA_20": "29.448",
+    "ClosePrice": "33.50",
+    "ChangePCT": "2.10"
+  },
+  {
+    "code": "sh601179",
+    "name": "中国西电",
+    "TurnoverRate": "5.59",
+    "MA_20": "13.024",
+    "ClosePrice": "14.37",
+    "ChangePCT": "3.31"
+  },
+  {
+    "code": "sz001330",
+    "name": "博纳影业",
+    "TurnoverRate": "5.57",
+    "MA_20": "4.811",
+    "ClosePrice": "5.20",
+    "ChangePCT": "4.21"
+  },
+  {
+    "code": "sz002888",
+    "name": "惠威科技",
+    "TurnoverRate": "5.56",
+    "MA_20": "16.175",
+    "ClosePrice": "16.63",
+    "ChangePCT": "5.25"
+  },
+  {
+    "code": "sz002315",
+    "name": "焦点科技",
+    "TurnoverRate": "5.54",
+    "MA_20": "24.662",
+    "ClosePrice": "27.71",
+    "ChangePCT": "1.99"
+  },
+  {
+    "code": "sh603660",
+    "name": "苏州科达",
+    "TurnoverRate": "5.53",
+    "MA_20": "8.98",
+    "ClosePrice": "10.26",
+    "ChangePCT": "2.91"
+  },
+  {
+    "code": "sz002832",
+    "name": "比音勒芬",
+    "TurnoverRate": "5.44",
+    "MA_20": "22.739",
+    "ClosePrice": "25.30",
+    "ChangePCT": "-0.94"
+  },
+  {
+    "code": "sz000862",
+    "name": "银星能源",
+    "TurnoverRate": "5.44",
+    "MA_20": "5.263",
+    "ClosePrice": "5.63",
+    "ChangePCT": "0"
+  },
+  {
+    "code": "sz000777",
+    "name": "中核科技",
+    "TurnoverRate": "5.44",
+    "MA_20": "16.828",
+    "ClosePrice": "18.25",
+    "ChangePCT": "-0.82"
+  },
+  {
+    "code": "sz001220",
+    "name": "世盟股份",
+    "TurnoverRate": "5.43",
+    "MA_20": "28.498",
+    "ClosePrice": "30.41",
+    "ChangePCT": "-0.33"
+  },
+  {
+    "code": "sz002792",
+    "name": "通宇通讯",
+    "TurnoverRate": "5.42",
+    "MA_20": "27.002",
+    "ClosePrice": "28.75",
+    "ChangePCT": "9.98"
+  },
+  {
+    "code": "sh600267",
+    "name": "海正药业",
+    "TurnoverRate": "5.42",
+    "MA_20": "11.635",
+    "ClosePrice": "12.15",
+    "ChangePCT": "6.39"
+  },
+  {
+    "code": "sz001256",
+    "name": "炜冈科技",
+    "TurnoverRate": "5.41",
+    "MA_20": "24.034",
+    "ClosePrice": "25.77",
+    "ChangePCT": "8.46"
+  },
+  {
+    "code": "sz002319",
+    "name": "乐通股份",
+    "TurnoverRate": "5.37",
+    "MA_20": "10.539",
+    "ClosePrice": "10.69",
+    "ChangePCT": "0.09"
+  },
+  {
+    "code": "sz000554",
+    "name": "泰山石油",
+    "TurnoverRate": "5.36",
+    "MA_20": "6.372",
+    "ClosePrice": "6.47",
+    "ChangePCT": "-0.31"
+  },
+  {
+    "code": "sh601700",
+    "name": "风范股份",
+    "TurnoverRate": "5.36",
+    "MA_20": "4.749",
+    "ClosePrice": "5.92",
+    "ChangePCT": "10.04"
+  },
+  {
+    "code": "sz001280",
+    "name": "中国铀业",
+    "TurnoverRate": "5.34",
+    "MA_20": "60.728",
+    "ClosePrice": "64.13",
+    "ChangePCT": "0.68"
+  },
+  {
+    "code": "sz002177",
+    "name": "御银股份",
+    "TurnoverRate": "5.33",
+    "MA_20": "5.376",
+    "ClosePrice": "5.94",
+    "ChangePCT": "1.54"
+  },
+  {
+    "code": "sh603248",
+    "name": "锡华科技",
+    "TurnoverRate": "5.32",
+    "MA_20": "18.271",
+    "ClosePrice": "19.34",
+    "ChangePCT": "-0.31"
+  },
+  {
+    "code": "sz000815",
+    "name": "美利云",
+    "TurnoverRate": "5.31",
+    "MA_20": "14.771",
+    "ClosePrice": "18.37",
+    "ChangePCT": "10"
+  },
+  {
+    "code": "sz000601",
+    "name": "韶能股份",
+    "TurnoverRate": "5.30",
+    "MA_20": "6.465",
+    "ClosePrice": "6.64",
+    "ChangePCT": "1.53"
+  },
+  {
+    "code": "sh603232",
+    "name": "格尔软件",
+    "TurnoverRate": "5.29",
+    "MA_20": "14.225",
+    "ClosePrice": "15.53",
+    "ChangePCT": "-1.65"
+  },
+  {
+    "code": "sh600556",
+    "name": "天下秀",
+    "TurnoverRate": "5.29",
+    "MA_20": "4.358",
+    "ClosePrice": "5.04",
+    "ChangePCT": "6.11"
+  },
+  {
+    "code": "sz002188",
+    "name": "中天服务",
+    "TurnoverRate": "5.26",
+    "MA_20": "4.711",
+    "ClosePrice": "5.26",
+    "ChangePCT": "2.53"
+  },
+  {
+    "code": "sz002795",
+    "name": "永和智控",
+    "TurnoverRate": "5.23",
+    "MA_20": "5.867",
+    "ClosePrice": "6.53",
+    "ChangePCT": "4.15"
+  },
+  {
+    "code": "sz002218",
+    "name": "拓日新能",
+    "TurnoverRate": "5.20",
+    "MA_20": "3.77",
+    "ClosePrice": "4.18",
+    "ChangePCT": "0.72"
+  },
+  {
+    "code": "sz000818",
+    "name": "航锦科技",
+    "TurnoverRate": "5.20",
+    "MA_20": "12.913",
+    "ClosePrice": "13.62",
+    "ChangePCT": "1.64"
+  },
+  {
+    "code": "sh603617",
+    "name": "君禾股份",
+    "TurnoverRate": "5.20",
+    "MA_20": "6.285",
+    "ClosePrice": "6.81",
+    "ChangePCT": "0"
+  },
+  {
+    "code": "sh603630",
+    "name": "拉芳家化",
+    "TurnoverRate": "5.18",
+    "MA_20": "14.171",
+    "ClosePrice": "15.20",
+    "ChangePCT": "2.70"
+  },
+  {
+    "code": "sh603352",
+    "name": "至信股份",
+    "TurnoverRate": "5.17",
+    "MA_20": "24.994",
+    "ClosePrice": "27.03",
+    "ChangePCT": "0.07"
+  },
+  {
+    "code": "sz002686",
+    "name": "亿利达",
+    "TurnoverRate": "5.16",
+    "MA_20": "5.447",
+    "ClosePrice": "5.89",
+    "ChangePCT": "-1.01"
+  },
+  {
+    "code": "sz000670",
+    "name": "盈方微",
+    "TurnoverRate": "5.15",
+    "MA_20": "6.423",
+    "ClosePrice": "6.72",
+    "ChangePCT": "0.15"
+  },
+  {
+    "code": "sh603519",
+    "name": "立霸股份",
+    "TurnoverRate": "5.13",
+    "MA_20": "14.986",
+    "ClosePrice": "15.84",
+    "ChangePCT": "6.59"
+  },
+  {
+    "code": "sz000839",
+    "name": "国安股份",
+    "TurnoverRate": "5.10",
+    "MA_20": "2.554",
+    "ClosePrice": "2.87",
+    "ChangePCT": "5.51"
+  },
+  {
+    "code": "sz002918",
+    "name": "蒙娜丽莎",
+    "TurnoverRate": "5.08",
+    "MA_20": "9.069",
+    "ClosePrice": "9.60",
+    "ChangePCT": "0.73"
+  },
+  {
+    "code": "sz002623",
+    "name": "亚玛顿",
+    "TurnoverRate": "5.08",
+    "MA_20": "14.598",
+    "ClosePrice": "16.22",
+    "ChangePCT": "1.38"
+  },
+  {
+    "code": "sz002123",
+    "name": "梦网科技",
+    "TurnoverRate": "5.07",
+    "MA_20": "8.24",
+    "ClosePrice": "8.60",
+    "ChangePCT": "2.14"
+  },
+  {
+    "code": "sh600418",
+    "name": "江淮汽车",
+    "TurnoverRate": "5.06",
+    "MA_20": "22.549",
+    "ClosePrice": "25.04",
+    "ChangePCT": "-2.03"
+  },
+  {
+    "code": "sz002923",
+    "name": "润都股份",
+    "TurnoverRate": "5.02",
+    "MA_20": "10.686",
+    "ClosePrice": "10.88",
+    "ChangePCT": "3.72"
+  },
+  {
+    "code": "sh603073",
+    "name": "彩蝶实业",
+    "TurnoverRate": "5.02",
+    "MA_20": "14.837",
+    "ClosePrice": "16.33",
+    "ChangePCT": "3.62"
+  },
+  {
+    "code": "sz002439",
+    "name": "启明星辰",
+    "TurnoverRate": "5.01",
+    "MA_20": "13.565",
+    "ClosePrice": "14.34",
+    "ChangePCT": "1.92"
+  },
+  {
+    "code": "sh600829",
+    "name": "人民同泰",
+    "TurnoverRate": "5",
+    "MA_20": "9.022",
+    "ClosePrice": "9.63",
+    "ChangePCT": "3.44"
+  },
+  {
+    "code": "sh600199",
+    "name": "金种子酒",
+    "TurnoverRate": "5",
+    "MA_20": "7.056",
+    "ClosePrice": "7.85",
+    "ChangePCT": "-0.63"
+  },
+  {
+    "code": "sz002912",
+    "name": "中新赛克",
+    "TurnoverRate": "4.99",
+    "MA_20": "18.137",
+    "ClosePrice": "21.03",
+    "ChangePCT": "9.99"
+  },
+  {
+    "code": "sz002553",
+    "name": "南方精工",
+    "TurnoverRate": "4.99",
+    "MA_20": "14.978",
+    "ClosePrice": "16.19",
+    "ChangePCT": "-1.94"
+  },
+  {
+    "code": "sz002195",
+    "name": "岩山科技",
+    "TurnoverRate": "4.99",
+    "MA_20": "6.255",
+    "ClosePrice": "7.03",
+    "ChangePCT": "2.33"
+  },
+  {
+    "code": "sh600875",
+    "name": "东方电气",
+    "TurnoverRate": "4.98",
+    "MA_20": "26.021",
+    "ClosePrice": "27.61",
+    "ChangePCT": "3.10"
+  },
+  {
+    "code": "sh603988",
+    "name": "中电电机",
+    "TurnoverRate": "4.97",
+    "MA_20": "16.571",
+    "ClosePrice": "18.77",
+    "ChangePCT": "-0.16"
+  },
+  {
+    "code": "sz002962",
+    "name": "五方光电",
+    "TurnoverRate": "4.96",
+    "MA_20": "12.561",
+    "ClosePrice": "12.60",
+    "ChangePCT": "3.87"
+  },
+  {
+    "code": "sz002253",
+    "name": "川大智胜",
+    "TurnoverRate": "4.95",
+    "MA_20": "9.126",
+    "ClosePrice": "10.12",
+    "ChangePCT": "6.30"
+  },
+  {
+    "code": "sz002963",
+    "name": "豪尔赛",
+    "TurnoverRate": "4.94",
+    "MA_20": "15.14",
+    "ClosePrice": "15.99",
+    "ChangePCT": "9.97"
+  },
+  {
+    "code": "sh603456",
+    "name": "九洲药业",
+    "TurnoverRate": "4.94",
+    "MA_20": "14.777",
+    "ClosePrice": "15.73",
+    "ChangePCT": "6.72"
+  },
+  {
+    "code": "sz002328",
+    "name": "新朋股份",
+    "TurnoverRate": "4.92",
+    "MA_20": "6.693",
+    "ClosePrice": "6.81",
+    "ChangePCT": "1.04"
+  },
+  {
+    "code": "sh605162",
+    "name": "新中港",
+    "TurnoverRate": "4.92",
+    "MA_20": "7.867",
+    "ClosePrice": "8.55",
+    "ChangePCT": "1.30"
+  },
+  {
+    "code": "sh603912",
+    "name": "佳力图",
+    "TurnoverRate": "4.91",
+    "MA_20": "7.062",
+    "ClosePrice": "7.84",
+    "ChangePCT": "9.96"
+  },
+  {
+    "code": "sz002425",
+    "name": "凯撒文化",
+    "TurnoverRate": "4.90",
+    "MA_20": "2.672",
+    "ClosePrice": "3.15",
+    "ChangePCT": "10.14"
+  },
+  {
+    "code": "sz001395",
+    "name": "亚联机械",
+    "TurnoverRate": "4.89",
+    "MA_20": "29.184",
+    "ClosePrice": "29.50",
+    "ChangePCT": "0.55"
+  },
+  {
+    "code": "sz001306",
+    "name": "夏厦精密",
+    "TurnoverRate": "4.89",
+    "MA_20": "48.97",
+    "ClosePrice": "51.78",
+    "ChangePCT": "3.33"
+  },
+  {
+    "code": "sz002130",
+    "name": "沃尔核材",
+    "TurnoverRate": "4.88",
+    "MA_20": "16.337",
+    "ClosePrice": "17.53",
+    "ChangePCT": "2.34"
+  },
+  {
+    "code": "sz002255",
+    "name": "海陆重工",
+    "TurnoverRate": "4.86",
+    "MA_20": "8.15",
+    "ClosePrice": "8.71",
+    "ChangePCT": "-0.34"
+  }
+]
