@@ -48,17 +48,27 @@ def fetch_text(url, timeout=15, headers=None, encoding='utf-8'):
 
 # === 股票代码列表 ===
 def get_stock_codes(html):
+    """Only extract codes from the STOCKS array (not LAUNCH_STOCKS or fallback)"""
+    m = re.search(r'const STOCKS\s*=\s*\[(.*?)\];', html, re.DOTALL)
+    if not m:
+        return []
+    stocks_block = m.group(1)
     codes = []
-    for m in re.finditer(r'"code":\s*"(s[hz]\d{6})"', html):
-        code = m.group(1)
+    for mm in re.finditer(r'"code":\s*"(s[hz]\d{6})"', stocks_block):
+        code = mm.group(1)
         if code not in codes:
             codes.append(code)
     return codes
 
 def get_stock_sectors(html):
+    """Only extract sectors from the STOCKS array"""
+    m = re.search(r'const STOCKS\s*=\s*\[(.*?)\];', html, re.DOTALL)
+    if not m:
+        return {}
+    stocks_block = m.group(1)
     sectors = {}
-    for m in re.finditer(r'"code":\s*"(s[hz]\d{6})"[^}]*?"sector":\s*"([^"]+)"', html):
-        sectors[m.group(1)] = m.group(2)
+    for mm in re.finditer(r'"code":\s*"(s[hz]\d{6})"[^}]*?"sector":\s*"([^"]+)"', stocks_block):
+        sectors[mm.group(1)] = mm.group(2)
     return sectors
 
 # === 新浪分钟K线 API ===
@@ -119,6 +129,34 @@ def fetch_daily_kline(code, lmt=200):
     except:
         return None
 
+# === 东方财富个股板块 API ===
+def fetch_stock_sector(code):
+    """从东方财富获取个股所属板块"""
+    num = code[2:]
+    secid = f'1.{num}' if code.startswith('sh') else f'0.{num}'
+    for domain in ['push2.eastmoney.com', 'push2delay.eastmoney.com']:
+        url = (f'https://{domain}/api/qt/stock/get?secid={secid}'
+               f'&fields=f127,f128,f135,f136,f137,f138')
+        text = fetch_text(url, timeout=8, headers={
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+            'Referer': 'https://quote.eastmoney.com/'
+        })
+        if not text:
+            continue
+        try:
+            data = json.loads(text)
+            if data and data.get('data'):
+                d = data['data']
+                industry = d.get('f127', '') or ''
+                concept = d.get('f128', '') or ''
+                # f127=行业, f128=概念
+                sector = industry if industry else concept
+                if sector:
+                    return sector
+        except:
+            continue
+    return None
+
 # === 腾讯实时行情 API ===
 def fetch_realtime_quote(code):
     url = f'https://qt.gtimg.cn/q={code}'
@@ -144,8 +182,15 @@ def fetch_realtime_quote(code):
             result['name'] = fields[1]
         if len(fields) > 3 and fields[3]:
             result['price'] = float(fields[3])
-        # PE: fields[39] = PE(静), fields[32] = 涨跌额(非PE)
-        # 优先用 fields[39], 为空时用 fields[32] 作为备选(有些股票PE在32)
+        if len(fields) > 4 and fields[4]:
+            result['prevClose'] = float(fields[4])
+        # 涨跌幅: fields[32]
+        if len(fields) > 32 and fields[32]:
+            try:
+                result['changePct'] = float(fields[32])
+            except:
+                pass
+        # PE: fields[39]
         if len(fields) > 39 and fields[39]:
             try:
                 pe_val = float(fields[39])
@@ -160,12 +205,6 @@ def fetch_realtime_quote(code):
         if len(fields) > 49 and fields[49]:
             try:
                 result['volRatio'] = float(fields[49])
-            except:
-                pass
-        # 涨跌幅: fields[31]
-        if len(fields) > 31 and fields[31]:
-            try:
-                result['changePct'] = float(fields[31])
             except:
                 pass
         # 换手率: fields[38]
@@ -475,6 +514,12 @@ def main():
         # 4c. 实时行情 (腾讯API)
         quote = fetch_realtime_quote(code)
         if quote:
+            if 'price' in quote and quote['price'] > 0:
+                entry['price'] = quote['price']
+            if 'changePct' in quote:
+                entry['changePct'] = quote['changePct']
+            if 'turnover' in quote:
+                entry['turnover'] = quote['turnover']
             if 'pe' in quote and quote['pe'] > 0:
                 entry['pe'] = quote['pe']
             if 'pb' in quote and quote['pb'] > 0:
@@ -486,13 +531,24 @@ def main():
                 if flow_str:
                     entry['mainFlow'] = flow_str
                     entry['mainFlowDate'] = '今日'
+                    entry['mainFlowToday'] = quote['mainFlow']
             if 'mainFlow5d' in quote and quote['mainFlow5d'] != 0:
                 flow_str = format_flow(quote['mainFlow5d'])
                 if flow_str:
                     entry['mainFlow5d'] = flow_str
 
-        # 4d. 板块共振
-        sector = stock_sectors.get(code)
+        # 4d. 板块信息 (东方财富API)
+        if code not in stock_sectors:
+            stock_sec = fetch_stock_sector(code)
+            if stock_sec:
+                entry['sector'] = stock_sec
+                sector = stock_sec
+            else:
+                sector = None
+        else:
+            sector = stock_sectors.get(code)
+
+        # 4e. 板块共振
         if sector and sectors_sorted:
             res = match_sector(sector, sectors_sorted)
             if res:
@@ -513,6 +569,307 @@ def main():
         time.sleep(0.15)
 
     print(f"\n=== Success: {success}/{len(codes)} ===")
+
+    # 4f. 批量获取主力资金（东方财富API，服务端无CORS限制）
+    print("\n--- Fetching capital flow (eastmoney) ---")
+    try:
+        secids = []
+        for code in codes:
+            num = code[2:]
+            secid = f'1.{num}' if code.startswith('sh') else f'0.{num}'
+            secids.append(secid)
+        secid_str = ','.join(secids)
+        cf_count = 0
+        cf_success = False
+        # 尝试多个域名
+        for cf_domain in ['push2delay.eastmoney.com', 'push2.eastmoney.com', '82.push2.eastmoney.com']:
+            cf_url = (f'https://{cf_domain}/api/qt/ulist.np/get?secids={secid_str}'
+                      f'&fields=f12,f14,f62,f184,f66,f69,f72,f75&fltt=2&invt=2')
+            cf_text = fetch_text(cf_url, timeout=15, headers={
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+                'Referer': 'https://quote.eastmoney.com/'
+            })
+            if not cf_text:
+                print(f"  {cf_domain}: no response")
+                continue
+            try:
+                cf_data = json.loads(cf_text)
+            except:
+                print(f"  {cf_domain}: JSON parse failed")
+                continue
+            if not cf_data or not cf_data.get('data') or not cf_data['data'].get('diff'):
+                print(f"  {cf_domain}: no data")
+                continue
+            for item in cf_data['data']['diff']:
+                num = str(item.get('f12', ''))
+                code = ('sh' + num) if (num.startswith('6') or num.startswith('9')) else ('sz' + num)
+                main_net = item.get('f62')
+                main_pct = item.get('f184')
+                if code in fallback and main_net is not None and main_net != 0:
+                    main_net_wan = float(main_net) / 10000  # 元 → 万元
+                    flow_str = format_flow(main_net_wan)
+                    if flow_str:
+                        fallback[code]['mainFlow'] = flow_str
+                        fallback[code]['mainFlowToday'] = main_net_wan
+                        fallback[code]['mainFlowDate'] = '今日'
+                        cf_count += 1
+                if code in fallback and main_pct is not None:
+                    fallback[code]['mainFlowPct'] = float(main_pct)
+                # 5日/10日主力净流入 (f66=5日, f72=10日, 单位:元)
+                flow_5d = item.get('f66')
+                flow_10d = item.get('f72')
+                if code in fallback and flow_5d is not None and flow_5d != 0:
+                    f5d_wan = float(flow_5d) / 10000  # 元 → 万元
+                    f5d_str = format_flow(f5d_wan)
+                    if f5d_str:
+                        fallback[code]['flow5d'] = f5d_str
+                if code in fallback and flow_10d is not None and flow_10d != 0:
+                    f10d_wan = float(flow_10d) / 10000
+                    f10d_str = format_flow(f10d_wan)
+                    if f10d_str:
+                        fallback[code]['flow10d'] = f10d_str
+            print(f"Capital flow via {cf_domain}: {cf_count}/{len(codes)} stocks updated")
+            cf_success = True
+            break
+        if not cf_success:
+            print("All capital flow domains failed, trying per-stock API...")
+            # 逐个股票获取资金流（腾讯API）
+            for code in codes:
+                quote_cf = fetch_realtime_quote(code)
+                if quote_cf:
+                    if 'mainFlow' in quote_cf and quote_cf['mainFlow'] != 0:
+                        flow_str = format_flow(quote_cf['mainFlow'])
+                        if flow_str and code in fallback:
+                            fallback[code]['mainFlow'] = flow_str
+                            fallback[code]['mainFlowToday'] = quote_cf['mainFlow']
+                            fallback[code]['mainFlowDate'] = '今日'
+                            cf_count += 1
+                    if 'mainFlow5d' in quote_cf and quote_cf['mainFlow5d'] != 0:
+                        flow_str = format_flow(quote_cf['mainFlow5d'])
+                        if flow_str and code in fallback:
+                            fallback[code]['flow5d'] = flow_str
+                time.sleep(0.05)
+            print(f"Capital flow (per-stock): {cf_count}/{len(codes)} stocks updated")
+    except Exception as e:
+        print(f"Capital flow error: {e}")
+
+    # 4g. 批量获取基本面数据（ROE/净利率/营收增速/净利增速）
+    print("\n--- Fetching fundamentals (eastmoney F10) ---")
+    try:
+        fund_count = 0
+        for code in codes:
+            num = code[2:]
+            # 东财F10主要指标API (ZyzbAjaxNew)
+            fund_url = f'https://emweb.securities.eastmoney.com/PC_HSF10/NewFinanceAnalysis/ZyzbAjaxNew?type=0&code={code.upper()}'
+            fund_text = fetch_text(fund_url, timeout=8, headers={
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+                'Referer': 'https://emweb.securities.eastmoney.com/'
+            })
+            if fund_text:
+                try:
+                    fund_data = json.loads(fund_text)
+                    if fund_data and fund_data.get('data'):
+                        items = fund_data['data']
+                        if items and len(items) > 0:
+                            latest = items[0]  # 最新一期
+                            roe_val = latest.get('ROEJQ')
+                            gm_val = latest.get('XSJLL')  # 净利率
+                            rev_val = latest.get('TOTALOPERATEREVETZ')  # 营收同比%
+                            profit_val = latest.get('PARENTNETPROFITTZ')  # 归母净利同比%
+                            if code in fallback:
+                                if roe_val is not None and float(roe_val) != 0:
+                                    fallback[code]['roe'] = round(float(roe_val), 2)
+                                if gm_val is not None and float(gm_val) != 0:
+                                    fallback[code]['grossMargin'] = round(float(gm_val), 2)
+                                if rev_val is not None and float(rev_val) != 0:
+                                    fallback[code]['revGrowth'] = round(float(rev_val), 2)
+                                if profit_val is not None and float(profit_val) != 0:
+                                    fallback[code]['profitGrowth'] = round(float(profit_val), 2)
+                                if any([roe_val, gm_val, rev_val, profit_val]):
+                                    fund_count += 1
+                except:
+                    pass
+            time.sleep(0.1)
+        print(f"Fundamentals: {fund_count}/{len(codes)} stocks updated")
+    except Exception as e:
+        print(f"Fundamentals error: {e}")
+
+    # 4h. 计算大盘β（个股vs上证指数）
+    print("\n--- Calculating market beta ---")
+    try:
+        beta_count = 0
+        # 获取上证指数近30日K线
+        idx_url = 'https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh000001,day,,,30,qfq'
+        idx_text = fetch_text(idx_url, timeout=10, headers={
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+        })
+        idx_closes = []
+        if idx_text:
+            idx_data = json.loads(idx_text)
+            if idx_data and idx_data.get('data'):
+                idx_key = list(idx_data['data'].keys())[0]
+                idx_inner = idx_data['data'][idx_key]
+                idx_day = idx_inner.get('day') or idx_inner.get('qfqday') or []
+                for row in idx_day:
+                    idx_closes.append(float(row[2]))  # close
+        if len(idx_closes) >= 10:
+            idx_returns = [(idx_closes[i] - idx_closes[i-1]) / idx_closes[i-1] for i in range(1, len(idx_closes))]
+            for code in codes:
+                num = code[2:]
+                stk_url = f'https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param={code},day,,,30,qfq'
+                stk_text = fetch_text(stk_url, timeout=8, headers={
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+                })
+                if stk_text:
+                    stk_data = json.loads(stk_text)
+                    stk_closes = []
+                    key = list(stk_data.get('data', {}).keys())[0] if stk_data.get('data') else None
+                    if key:
+                        stk_inner = stk_data['data'][key]
+                        stk_day = stk_inner.get('qfqday') or stk_inner.get('day') or []
+                        for row in stk_day:
+                            stk_closes.append(float(row[2]))
+                    if len(stk_closes) >= 10:
+                        n = min(len(stk_closes), len(idx_closes))
+                        stk_returns = [(stk_closes[i] - stk_closes[i-1]) / stk_closes[i-1] for i in range(1, n)]
+                        idx_returns_n = idx_returns[:n-1] if len(idx_returns) >= n-1 else idx_returns
+                        if len(stk_returns) >= 5 and len(idx_returns_n) >= 5:
+                            # 计算beta = cov(stock, market) / var(market)
+                            min_len = min(len(stk_returns), len(idx_returns_n))
+                            sr = stk_returns[:min_len]
+                            ir = idx_returns_n[:min_len]
+                            mean_sr = sum(sr) / len(sr)
+                            mean_ir = sum(ir) / len(ir)
+                            cov = sum((sr[i] - mean_sr) * (ir[i] - mean_ir) for i in range(min_len)) / min_len
+                            var_ir = sum((ir[i] - mean_ir) ** 2 for i in range(min_len)) / min_len
+                            beta = cov / var_ir if var_ir > 0 else 1.0
+                            # 同步率：5日中与大盘同向天数
+                            sync_5d = sum(1 for i in range(min(5, min_len)) if sr[i] * ir[i] > 0)
+                            if code in fallback:
+                                fallback[code]['beta'] = round(beta, 2)
+                                if beta > 1.2:
+                                    fallback[code]['betaCategory'] = '强势'
+                                elif beta > 0.8:
+                                    fallback[code]['betaCategory'] = '同步'
+                                elif beta > 0.3:
+                                    fallback[code]['betaCategory'] = '抗跌'
+                                else:
+                                    fallback[code]['betaCategory'] = '独立'
+                                fallback[code]['syncRate'] = f'{sync_5d}/5'
+                                beta_count += 1
+                time.sleep(0.1)
+        print(f"Beta: {beta_count}/{len(codes)} stocks updated")
+    except Exception as e:
+        print(f"Beta error: {e}")
+
+    # 4i. 推导阶段 + 生成逻辑文本
+    print("\n--- Deriving phase & logic ---")
+    try:
+        for code in codes:
+            if code not in fallback:
+                continue
+            entry = fallback[code]
+            kd30_k = entry.get('kd30_k', 50)
+            kd30_d = entry.get('kd30_d', 50)
+            kd5_k = entry.get('kd5_k', 50)
+            main_flow = entry.get('mainFlow', '')
+            vol_ratio = entry.get('volRatio', 1.0)
+            sector = entry.get('sector', '')
+            trend = entry.get('trend', '')
+            change_pct = entry.get('changePct', 0)
+
+            # 阶段推导（基于30分钟K值，不要求K>D，使超卖股有阶段区分）
+            if kd30_k < 15:
+                phase = 'on_deck'        # ⏳启动在即：深度超卖
+            elif kd30_k < 25:
+                phase = 'approaching'    # 🔍接近启动：低位回升中
+            elif kd30_k < 40:
+                phase = 'building'       # 🚀启动段：中低位构建
+            elif kd30_k < 55:
+                phase = 'accelerating'   # ⚡加速段
+            else:
+                phase = 'tail'           # 📉回落段
+            entry['preLaunchPhase'] = phase
+
+            # 逻辑文本生成（logic字段用于"逻辑"列显示，reason字段用于排序/标签）
+            parts = []
+            # 阶段标签
+            phase_labels = {
+                'on_deck': '⏳启动在即',
+                'approaching': '🔍接近启动',
+                'building': '🏗️蓄势中',
+                'accelerating': '🚀加速中',
+                'tail': '⚠️尾部'
+            }
+            phase_label = phase_labels.get(phase, '')
+            # KD状态
+            if kd30_k < 20:
+                parts.append('30分钟KD超卖')
+            elif kd30_k < 35:
+                parts.append('30分钟KD低位')
+            elif kd30_k < 50:
+                parts.append('30分钟KD中位')
+            # 5分钟KD
+            if kd5_k < 20:
+                parts.append('5分钟KD极低位')
+            elif kd5_k < 35:
+                parts.append('5分钟KD低位')
+            # 资金
+            if main_flow:
+                if '亿' in main_flow and '-' not in main_flow:
+                    parts.append(f'主力净流入{main_flow}')
+                elif '万' in main_flow and '-' not in main_flow:
+                    parts.append(f'主力小幅流入{main_flow}')
+                elif '-' in main_flow:
+                    parts.append(f'主力净流出{main_flow}')
+            # flow5d/flow10d
+            flow5d = entry.get('flow5d', '')
+            flow10d = entry.get('flow10d', '')
+            if flow5d and '-' not in flow5d:
+                parts.append(f'5日净流入{flow5d}')
+            if flow10d and '-' not in flow10d:
+                parts.append(f'10日净流入{flow10d}')
+            # 放量
+            if vol_ratio > 2:
+                parts.append('显著放量')
+            elif vol_ratio > 1.5:
+                parts.append('温和放量')
+            # 板块
+            if sector:
+                parts.append(f'板块:{sector}')
+            # 趋势
+            if trend:
+                parts.append(trend)
+            # 涨跌幅
+            if change_pct is not None:
+                if change_pct < -2:
+                    parts.append(f'回调{change_pct:.1f}%')
+                elif change_pct > 5:
+                    parts.append(f'涨{change_pct:.1f}%')
+            # 基本面
+            roe_val = entry.get('roe')
+            pe_val = entry.get('pe')
+            if roe_val and roe_val > 10:
+                parts.append(f'ROE{roe_val:.0f}%')
+            if pe_val and 0 < pe_val < 20:
+                parts.append(f'PE{pe_val:.0f}')
+            # β
+            beta_val = entry.get('beta')
+            beta_cat = entry.get('betaCategory', '')
+            if beta_cat:
+                parts.append(f'β{beta_val:.1f}({beta_cat})')
+            if not parts:
+                parts.append('日K金叉+30分钟KD低位')
+            entry['reason'] = '｜'.join(parts)
+            # logic字段：更完整的逻辑描述
+            logic_parts = []
+            if phase_label:
+                logic_parts.append(phase_label)
+            logic_parts.extend(parts)
+            entry['logic'] = '｜'.join(logic_parts)
+        print(f"Phase & logic: {len(codes)} stocks updated")
+    except Exception as e:
+        print(f"Phase/logic error: {e}")
 
     # 5. 注入到HTML
     update_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
