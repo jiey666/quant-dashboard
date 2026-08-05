@@ -1,2 +1,3 @@
-# quant-dashboard
-Quant Stock Dashboard
+# Quant Dashboard
+
+Auto-updated quant trading dashboard.
