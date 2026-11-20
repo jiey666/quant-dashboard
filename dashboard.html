@@ -811,11 +811,7 @@
 <div class="container">
   <!-- Header -->
   <div class="header">
-    <div class="header-title">戴维斯双击 <span class="accent">· 实时仪表盘</span></div>
-    <div class="header-meta">
-      <span id="marketIdx">上证 -- | 深成 --</span>
-      <span id="lastUpdate">--</span>
-    </div>
+    <div class="header-title">戴维斯双击 <span class="accent">· 量化选股</span></div>
   </div>
 
   <!-- Top Navigation -->
@@ -836,7 +832,6 @@
         <thead>
           <tr>
             <th data-col="score" class="th-filter">评分 <span class="th-arrow">▾</span></th>
-            <th data-col="tier" class="th-filter">梯队 <span class="th-arrow">▾</span></th>
             <th>代码</th>
             <th class="left-align">名称</th>
             <th data-col="sector" class="left-align th-filter">赛道 <span class="th-arrow">▾</span></th>
@@ -849,16 +844,10 @@
             <th data-col="fund" class="th-filter">基本面 <span class="th-arrow">▾</span></th>
             <th data-col="kd5" class="th-filter">5分钟KD <span class="th-arrow">▾</span></th>
             <th data-col="kd30" class="th-filter">30分钟KD <span class="th-arrow">▾</span></th>
-            <th data-col="macd" class="th-filter">MACD <span class="th-arrow">▾</span></th>
-            <th data-col="rsi" class="th-filter">RSI <span class="th-arrow">▾</span></th>
-            <th data-col="ma" class="th-filter">均线 <span class="th-arrow">▾</span></th>
-            <th data-col="trend" class="th-filter">趋势 <span class="th-arrow">▾</span></th>
             <th data-col="volsig" class="th-filter">量价信号 <span class="th-arrow">▾</span></th>
             <th data-col="mainflow" class="th-filter">主力资金 <span class="th-arrow">▾</span></th>
-            <th data-col="highopen" class="th-filter">30日高开率 <span class="th-arrow">▾</span></th>
             <th data-col="flow510" class="th-filter">5日/10日资金 <span class="th-arrow">▾</span></th>
             <th data-col="sectorres" class="th-filter">板块共振 <span class="th-arrow">▾</span></th>
-            <th data-col="beta" class="th-filter">大盘β <span class="th-arrow">▾</span></th>
             <th>支撑价</th>
             <th class="left-align">逻辑</th>
           </tr>
@@ -3194,7 +3183,6 @@ function renderStockRow(stock, index) {
   return `
     <tr id="row-${stock.code}" class="${_rowCls}">
       <td class="col-score"><span class="score-val ${sCls}">${score}</span></td>
-      <td><span class="tier-badge tier-${tier}">${tier}</span></td>
       <td><span class="code-text">${num}</span></td>
       <td class="left-align">${nameHtml}${newTag}</td>
       <td class="left-align">${sectorHtml}</td>
@@ -3207,16 +3195,10 @@ function renderStockRow(stock, index) {
       <td class="left-align">${fundHtml}</td>
       <td>${kd5Html}</td>
       <td>${kd30Html}</td>
-      <td>${macdHtml}</td>
-      <td>${rsiHtml}</td>
-      <td>${maHtml}</td>
-      <td>${trendHtml}</td>
       <td>${volHtml}</td>
       <td>${flowHtml}</td>
-      <td>${openRateHtml}</td>
       <td>${flowDualHtml}</td>
       <td>${resonHtml}</td>
-      <td>${betaHtml}</td>
       <td>${supportHtml}</td>
       <td class="col-logic">${logicHtml}</td>
     </tr>
@@ -3357,7 +3339,7 @@ function renderStocks() {
 
   if (pool.length === 0) {
     body.innerHTML = `
-      <tr><td colspan="27">
+      <tr><td colspan="19">
         <div class="empty-state">
           <div class="empty-state-icon">📭</div>
           <div class="empty-state-text">暂无选股数据</div>
@@ -3410,7 +3392,7 @@ function renderStocks() {
       const maxS = Math.max(...scores);
       const minS = Math.min(...scores);
 
-      html += `<tr class="phase-section-header ${g.cls}"><td colspan="27">`;
+      html += `<tr class="phase-section-header ${g.cls}"><td colspan="19">`;
       html += `<span class="phase-header-icon">${g.label}</span>`;
       html += `<span class="phase-header-count">${groupStocks.length} 只</span>`;
       html += `<span class="phase-header-score">预启动分 ${minS}~${maxS}</span>`;
@@ -3422,7 +3404,7 @@ function renderStocks() {
           html += renderStockRow(s, globalIdx++);
         } catch(e) {
           console.error('[renderStockRow error]', s.code, e);
-          html += '<tr><td colspan="27" style="color:orange;">⚠️ ' + s.code + ' 渲染错误: ' + e.message + '</td></tr>';
+          html += '<tr><td colspan="19" style="color:orange;">⚠️ ' + s.code + ' 渲染错误: ' + e.message + '</td></tr>';
         }
       });
     });
@@ -3443,14 +3425,14 @@ function renderStocks() {
       return renderStockRow(s, i);
     } catch(e) {
       console.error('[renderStockRow error]', s.code, e);
-      return '<tr><td colspan="27" style="color:orange;">⚠️ ' + s.code + ' 渲染错误: ' + e.message + '</td></tr>';
+      return '<tr><td colspan="19" style="color:orange;">⚠️ ' + s.code + ' 渲染错误: ' + e.message + '</td></tr>';
     }
   }).join('');
   renderMobileCards(sortedPool);
   } catch(e) {
     console.error('[renderStocks error]', e);
     const body = document.getElementById('stockBody');
-    if (body) body.innerHTML = '<tr><td colspan="27" style="color:red;padding:20px;">⚠️ renderStocks 错误: ' + e.message + '</td></tr>';
+    if (body) body.innerHTML = '<tr><td colspan="19" style="color:red;padding:20px;">⚠️ renderStocks 错误: ' + e.message + '</td></tr>';
   }
 }
 
@@ -5176,7 +5158,7 @@ function applyKDJFallbackEarly() {
     // 显示错误在页面上
     const body = document.getElementById('stockBody');
     if (body) {
-      body.innerHTML = '<tr><td colspan="27" style="color:red;padding:20px;text-align:center;">⚠️ 初始化错误: ' + e.message + '<br><pre style="text-align:left;font-size:11px;">' + (e.stack||'').substring(0,500) + '</pre></td></tr>';
+      body.innerHTML = '<tr><td colspan="19" style="color:red;padding:20px;text-align:center;">⚠️ 初始化错误: ' + e.message + '<br><pre style="text-align:left;font-size:11px;">' + (e.stack||'').substring(0,500) + '</pre></td></tr>';
     }
   }
 })();
