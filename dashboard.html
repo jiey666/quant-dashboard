@@ -125,6 +125,16 @@
 
   /* Pool switcher */
   .pool-switcher { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+  .bottom-badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; white-space: nowrap; cursor: help; }
+  .b-green { background: #E1F5EE; color: #0F6E56; }
+  .b-amber { background: #FAEEDA; color: #854F0B; }
+  .b-gray { background: #F1EFE8; color: #5F5E5A; }
+  .b-red { background: #FCEBEB; color: #A32D2D; }
+  .alert-tag { display: inline-block; padding: 2px 7px; border-radius: 10px; font-size: 11px; margin: 1px 2px; white-space: nowrap; }
+  .a-green { background: #E1F5EE; color: #0F6E56; }
+  .a-red { background: #FCEBEB; color: #A32D2D; }
+  .a-amber { background: #FAEEDA; color: #854F0B; }
+  .alert-none { color: var(--text-tertiary, #999); }
   .pool-btn {
     padding: 8px 18px;
     background: var(--card-bg);
@@ -845,6 +855,8 @@
             <th data-col="mainflow" class="th-filter">主力资金 <span class="th-arrow">▾</span></th>
             <th data-col="flow510" class="th-filter">5日/10日资金 <span class="th-arrow">▾</span></th>
             <th data-col="sectorres" class="th-filter">板块共振 <span class="th-arrow">▾</span></th>
+            <th data-col="bottom" class="th-filter">跌透判定 <span class="th-arrow">▾</span></th>
+            <th data-col="alert" class="th-filter">尾盘提醒 <span class="th-arrow">▾</span></th>
           </tr>
         </thead>
         <tbody id="stockBody"></tbody>
@@ -2565,7 +2577,15 @@ var COL_DEFS = {
     return '流入';
   }},
   sectorres: { type: 'enum', field: 'sectorResonance', label: '板块共振' },
-  beta: { type: 'enum', field: 'betaCategory', label: '大盘β' }
+  beta: { type: 'enum', field: 'betaCategory', label: '大盘β' },
+  bottom: { type: 'enum', label: '跌透判定', getValue: function(s) {
+    return judgeBottomStatus(s).label;
+  }},
+  alert: { type: 'enum', label: '尾盘提醒', getValue: function(s) {
+    var tags = buildAlerts(s, judgeBottomStatus(s));
+    if (!tags.length) return '无信号';
+    return tags[0].cls === 'green' ? '买点信号' : (tags[0].cls === 'red' ? '风险警示' : '高位兑现');
+  }}
 };
 
 function getColValue(stock, colKey) {
@@ -2899,7 +2919,45 @@ function renderStats() {
 // ============================================
 // 渲染表格行
 // ============================================
+// ============================================
+// 跌透判定 + 尾盘提醒（隔日模式：14:00-14:55 买入，次日 10:30 前卖出）
+// ============================================
+function judgeBottomStatus(s) {
+  var k30 = s.kd30_k, k5 = s.kd5_k, d5 = s.kd5_d, vr = s.volRatio, mf = s.mainFlowToday, chg = s.changePct;
+  if (k30 === undefined || k30 === null || k30 === '--') return { label: '数据缺失', cls: 'gray', score: 0 };
+  var hardOut = (mf !== undefined && mf < -8000) || (vr !== undefined && vr > 1.8 && chg < 0) || k30 > 70;
+  if (hardOut) return { label: '❌ 下跌中继·勿碰', cls: 'red', score: 0 };
+  var score = 0;
+  if (k30 < 15) score += 40; else if (k30 < 20) score += 30; else if (k30 < 25) score += 24; else if (k30 < 30) score += 16; else if (k30 < 40) score += 8; else score += 2;
+  if (k5 !== undefined && d5 !== undefined && k5 > d5 && k5 < 35) score += 15;
+  if (s.kd30_cross === '金叉') score += 10;
+  if (vr !== undefined) { if (vr < 0.6) score += 15; else if (vr < 0.9) score += 10; else if (vr < 1.2) score += 5; }
+  if (mf !== undefined) { if (mf > 0) score += 15; else if (mf > -1000) score += 10; else if (mf > -3000) score += 5; }
+  if (chg !== undefined && chg > -4 && chg < 1) score += 5;
+  if (s.flow5d && String(s.flow5d).indexOf('-') < 0) score += 5;
+  if (score >= 78) return { label: '✅ 已跌透·尾盘可买', cls: 'green', score: score };
+  if (score >= 58) return { label: '🔶 接近跌透·盯盘', cls: 'amber', score: score };
+  if (score >= 32) return { label: '⏳ 回调中·等缩量', cls: 'gray', score: score };
+  return { label: '⚠️ 高位回落·勿急', cls: 'red', score: score };
+}
+
+function buildAlerts(s, bottom) {
+  var tags = [];
+  var k5 = s.kd5_k, d5 = s.kd5_d, k30 = s.kd30_k, vr = s.volRatio, mf = s.mainFlowToday, chg = s.changePct;
+  if (vr !== undefined && vr > 1.8 && chg < 0) tags.push({ t: '🔴 放量杀跌', cls: 'red', tip: '量比>1.8且下跌，恐慌盘涌出勿接飞刀' });
+  if (mf !== undefined && mf < -8000) tags.push({ t: '🔴 主力大幅流出', cls: 'red', tip: '当日主力净流出超8000万，跌透判定作废' });
+  if (k5 !== undefined && d5 !== undefined && k5 > d5 && k5 < 35) tags.push({ t: '🟢 5分钟低位金叉', cls: 'green', tip: '5分钟K上穿D且K<35，尾盘买入信号' });
+  else if (s.kd30_cross === '金叉' && k30 < 45) tags.push({ t: '🟢 30分钟KD金叉', cls: 'green', tip: '30分钟低位金叉，启动信号' });
+  if (mf !== undefined && mf > 0 && s.flow5d && String(s.flow5d).indexOf('-') >= 0) tags.push({ t: '🟢 主力回流', cls: 'green', tip: '当日主力净流入而5日仍流出，资金开始转向' });
+  if (chg !== undefined && chg > 7) tags.push({ t: '🟠 次日冲高兑现', cls: 'amber', tip: '今日大涨，持有者次日10:30前冲高卖出' });
+  else if (k30 !== undefined && k30 > 80) tags.push({ t: '🟠 KD高位兑现', cls: 'amber', tip: '30分钟K>80，次日冲高减仓' });
+  return tags.slice(0, 2);
+}
+
 function renderStockRow(stock, index) {
+  var bottom = judgeBottomStatus(stock);
+  var alertList = buildAlerts(stock, bottom);
+  var alertHtml = alertList.length ? alertList.map(function(a) { return '<span class="alert-tag a-' + a.cls + '" title="' + escapeAttr(a.tip) + '">' + a.t + '</span>'; }).join('') : '<span class="alert-none">--</span>';
   const num = extractNum(stock.code);
   const kdj = KDJ_PRECOMPUTED[num] || {};
   const flow = CAPITAL_FLOW_CACHE[num] || {};
@@ -3191,6 +3249,8 @@ function renderStockRow(stock, index) {
       <td>${flowHtml}</td>
       <td>${flowDualHtml}</td>
       <td>${resonHtml}</td>
+      <td><span class="bottom-badge b-${bottom.cls}" title="跌透评分 ${bottom.score}/100">${bottom.label}</span></td>
+      <td class="left-align">${alertHtml}</td>
     </tr>
   `;
 }
@@ -3329,7 +3389,7 @@ function renderStocks() {
 
   if (pool.length === 0) {
     body.innerHTML = `
-      <tr><td colspan="14">
+      <tr><td colspan="16">
         <div class="empty-state">
           <div class="empty-state-icon">📭</div>
           <div class="empty-state-text">暂无选股数据</div>
@@ -3382,7 +3442,7 @@ function renderStocks() {
       const maxS = Math.max(...scores);
       const minS = Math.min(...scores);
 
-      html += `<tr class="phase-section-header ${g.cls}"><td colspan="14">`;
+      html += `<tr class="phase-section-header ${g.cls}"><td colspan="16">`;
       html += `<span class="phase-header-icon">${g.label}</span>`;
       html += `<span class="phase-header-count">${groupStocks.length} 只</span>`;
       html += `<span class="phase-header-score">预启动分 ${minS}~${maxS}</span>`;
@@ -3394,7 +3454,7 @@ function renderStocks() {
           html += renderStockRow(s, globalIdx++);
         } catch(e) {
           console.error('[renderStockRow error]', s.code, e);
-          html += '<tr><td colspan="14" style="color:orange;">⚠️ ' + s.code + ' 渲染错误: ' + e.message + '</td></tr>';
+          html += '<tr><td colspan="16" style="color:orange;">⚠️ ' + s.code + ' 渲染错误: ' + e.message + '</td></tr>';
         }
       });
     });
@@ -3415,14 +3475,14 @@ function renderStocks() {
       return renderStockRow(s, i);
     } catch(e) {
       console.error('[renderStockRow error]', s.code, e);
-      return '<tr><td colspan="14" style="color:orange;">⚠️ ' + s.code + ' 渲染错误: ' + e.message + '</td></tr>';
+      return '<tr><td colspan="16" style="color:orange;">⚠️ ' + s.code + ' 渲染错误: ' + e.message + '</td></tr>';
     }
   }).join('');
   renderMobileCards(sortedPool);
   } catch(e) {
     console.error('[renderStocks error]', e);
     const body = document.getElementById('stockBody');
-    if (body) body.innerHTML = '<tr><td colspan="14" style="color:red;padding:20px;">⚠️ renderStocks 错误: ' + e.message + '</td></tr>';
+    if (body) body.innerHTML = '<tr><td colspan="16" style="color:red;padding:20px;">⚠️ renderStocks 错误: ' + e.message + '</td></tr>';
   }
 }
 
@@ -5148,7 +5208,7 @@ function applyKDJFallbackEarly() {
     // 显示错误在页面上
     const body = document.getElementById('stockBody');
     if (body) {
-      body.innerHTML = '<tr><td colspan="14" style="color:red;padding:20px;text-align:center;">⚠️ 初始化错误: ' + e.message + '<br><pre style="text-align:left;font-size:11px;">' + (e.stack||'').substring(0,500) + '</pre></td></tr>';
+      body.innerHTML = '<tr><td colspan="16" style="color:red;padding:20px;text-align:center;">⚠️ 初始化错误: ' + e.message + '<br><pre style="text-align:left;font-size:11px;">' + (e.stack||'').substring(0,500) + '</pre></td></tr>';
     }
   }
 })();
