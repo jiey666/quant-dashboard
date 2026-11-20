@@ -813,10 +813,8 @@
   <div class="header">
     <div class="header-title">戴维斯双击 <span class="accent">· 实时仪表盘</span></div>
     <div class="header-meta">
-      <span><span class="dot live-dot" id="liveDot"></span> <span id="liveStatus">连接中</span></span>
       <span id="marketIdx">上证 -- | 深成 --</span>
       <span id="lastUpdate">--</span>
-      <span>刷新 <span id="quoteCountdown">10</span>s</span>
     </div>
   </div>
 
@@ -824,20 +822,12 @@
   <nav class="top-nav">
     <button class="nav-btn active" onclick="switchPage('stocks', event)">📊 选股仪表盘</button>
     <button class="nav-btn" onclick="switchPage('policy', event)">🚗 政策驱动</button>
-    <a href="sector_prediction.html" class="nav-btn" style="text-decoration:none;display:inline-flex;align-items:center;gap:4px">🔮 隔日板块预测</a>
   </nav>
 
   <!-- Page: Stocks -->
   <div class="page active" id="page-stocks">
-  <!-- Stats Cards (10 mini cards) -->
+  <!-- Stats Cards -->
   <div class="stats-row" id="statsRow"></div>
-
-  <!-- Pool Switcher -->
-  <div class="pool-switcher">
-    <button class="pool-btn active" id="btnStocks" onclick="switchPool('stocks')">
-      📊 综合最优池 <span class="badge" id="badgeStocks">0</span>
-    </button>
-  </div>
 
   <!-- Main Table -->
   <div class="table-container">
@@ -2884,83 +2874,13 @@ function renderStats() {
     else if (_phase === 'tail') tailCount++;
   });
 
-  // 如果pool为空，显示0
+  // 只保留阶段分布 8 张卡片（通用涨跌/KD超卖/洗盘/出货等恒为0或与阶段重复的已移除）
   const html = `
-    <div class="stat-mini red ${activeStatFilter === 'up' ? 'active' : ''}" onclick="setStatFilter('up')">
-      <div class="stat-mini-label">上涨</div>
-      <div class="stat-mini-value red">${upCount}</div>
-    </div>
-    <div class="stat-mini green ${activeStatFilter === 'down' ? 'active' : ''}" onclick="setStatFilter('down')">
-      <div class="stat-mini-label">下跌</div>
-      <div class="stat-mini-value green">${downCount}</div>
-    </div>
-    <div class="stat-mini gray ${activeStatFilter === 'flat' ? 'active' : ''}" onclick="setStatFilter('flat')">
-      <div class="stat-mini-label">平盘</div>
-      <div class="stat-mini-value gray">${flatCount}</div>
-    </div>
-    <div class="stat-mini yellow ${activeStatFilter === 'kd5Oversold' ? 'active' : ''}" onclick="setStatFilter('kd5Oversold')">
-      <div class="stat-mini-label">5分钟KD超卖</div>
-      <div class="stat-mini-value yellow">${kd5Oversold}</div>
-    </div>
-    <div class="stat-mini yellow ${activeStatFilter === 'kd30Oversold' ? 'active' : ''}" onclick="setStatFilter('kd30Oversold')">
-      <div class="stat-mini-label">30分钟KD超卖</div>
-      <div class="stat-mini-value yellow">${kd30Oversold}</div>
-    </div>
-    <div class="stat-mini red ${activeStatFilter === 'kdEarlySignal' ? 'active' : ''}" onclick="setStatFilter('kdEarlySignal')">
-      <div class="stat-mini-label">KD低位预警</div>
-      <div class="stat-mini-value red">${kdEarlyCount}</div>
-    </div>
-    <div class="stat-mini purple ${activeStatFilter === 'kdHighWarn' ? 'active' : ''}" onclick="setStatFilter('kdHighWarn')">
-      <div class="stat-mini-label">KD高位警告</div>
-      <div class="stat-mini-value purple">${kdHighCount}</div>
-    </div>
-    <div class="stat-mini orange ${activeStatFilter === 'wash' ? 'active' : ''}" onclick="setStatFilter('wash')">
-      <div class="stat-mini-label">洗盘信号</div>
-      <div class="stat-mini-value orange">${washCount}</div>
-    </div>
-    <div class="stat-mini red ${activeStatFilter === 'aboveMA20' ? 'active' : ''}" onclick="setStatFilter('aboveMA20')">
-      <div class="stat-mini-label">站上20日线</div>
-      <div class="stat-mini-value red">${aboveMA20Count}</div>
-    </div>
-    <div class="stat-mini red ${activeStatFilter === 'ship' ? 'active' : ''}" onclick="setStatFilter('ship')">
-      <div class="stat-mini-label">出货警告</div>
-      <div class="stat-mini-value red">${shipCount}</div>
-    </div>
-    ${currentPool === 'launch' ? `
-    <div class="stat-mini red ${activeStatFilter === 'onDeck' ? 'active' : ''}" onclick="setStatFilter('onDeck')">
-      <div class="stat-mini-label">⏳ 启动在即</div>
-      <div class="stat-mini-value red">${onDeckCount}</div>
-    </div>
-    <div class="stat-mini yellow ${activeStatFilter === 'approachingPhase' ? 'active' : ''}" onclick="setStatFilter('approachingPhase')">
-      <div class="stat-mini-label">🔍 接近启动</div>
-      <div class="stat-mini-value yellow">${approachingCount}</div>
-    </div>
-    <div class="stat-mini blue ${activeStatFilter === 'launchedPhase' ? 'active' : ''}" onclick="setStatFilter('launchedPhase')">
-      <div class="stat-mini-label">🚀 启动段</div>
-      <div class="stat-mini-value blue">${launchedCount}</div>
-    </div>
-    <div class="stat-mini purple ${activeStatFilter === 'accel' ? 'active' : ''}" onclick="setStatFilter('accel')">
-      <div class="stat-mini-label">⚡ 加速段</div>
-      <div class="stat-mini-value purple">${accelCount}</div>
-    </div>
-    <div class="stat-mini gray ${activeStatFilter === 'tail' ? 'active' : ''}" onclick="setStatFilter('tail')">
-      <div class="stat-mini-label">📉 回落段</div>
-      <div class="stat-mini-value gray">${tailCount}</div>
-    </div>
-    <div class="stat-mini orange ${activeStatFilter === 'kdHighPhase' ? 'active' : ''}" onclick="setStatFilter('kdHighPhase')">
-      <div class="stat-mini-label">🌡️ KD高位</div>
-      <div class="stat-mini-value orange">${kdHighPhaseCount}</div>
-    </div>
-    <div class="stat-mini gray ${activeStatFilter === 'capitalOut' ? 'active' : ''}" onclick="setStatFilter('capitalOut')" title="KD虽在低位但主力资金净流出，启动信号不成立">
-      <div class="stat-mini-label">📉 资金流出</div>
-      <div class="stat-mini-value gray">${capitalOutCount}</div>
-    </div>
-    ` : `
     <div class="stat-mini blue ${activeStatFilter === 'launch' ? 'active' : ''}" onclick="setStatFilter('launch')" title="启动在即+接近启动+启动段 三阶段合计">
-      <div class="stat-mini-label">启动系列</div>
+      <div class="stat-mini-label">🚀 启动系列</div>
       <div class="stat-mini-value blue">${launchCount}</div>
     </div>
-    <div class="stat-mini red ${activeStatFilter === 'onDeck' ? 'active' : ''}" onclick="setStatFilter('onDeck')" title="K<15 深度超卖，启动信号最纯粹">
+    <div class="stat-mini red ${activeStatFilter === 'onDeck' ? 'active' : ''}" onclick="setStatFilter('onDeck')" title="K&lt;15 深度超卖，启动信号最纯粹">
       <div class="stat-mini-label">⏳ 启动在即</div>
       <div class="stat-mini-value red">${onDeckCount}</div>
     </div>
@@ -2988,7 +2908,6 @@ function renderStats() {
       <div class="stat-mini-label">📉 资金流出</div>
       <div class="stat-mini-value gray">${capitalOutCount}</div>
     </div>
-    `}
   `;
   document.getElementById('statsRow').innerHTML = html;
 }
@@ -3754,7 +3673,8 @@ function switchPool(pool) {
   // 启动段候选池已移除，始终使用综合最优池
   currentPool = 'stocks';
   activeStatFilter = null;
-  document.getElementById('btnStocks').classList.toggle('active', true);
+  var _btnS = document.getElementById('btnStocks');
+  if (_btnS) _btnS.classList.toggle('active', true);
   var _btnLaunch = document.getElementById('btnLaunch');
   if (_btnLaunch) _btnLaunch.classList.toggle('active', false);
   renderStats();
@@ -5218,8 +5138,9 @@ function applyKDJFallbackEarly() {
     if (_bl) _bl.textContent = LAUNCH_STOCKS.length;
     console.log('[Init] STOCKS.length =', STOCKS.length, '| LAUNCH_STOCKS.length =', LAUNCH_STOCKS.length);
 
-    // 同步按钮高亮状态（启动段候选池按钮已移除，加守护避免 null 引用）
-    document.getElementById('btnStocks').classList.toggle('active', currentPool === 'stocks');
+    // 同步按钮高亮状态（池切换器已移除，加守护避免 null 引用）
+    var _initBtnStocks = document.getElementById('btnStocks');
+    if (_initBtnStocks) _initBtnStocks.classList.toggle('active', currentPool === 'stocks');
     var _initBtnLaunch = document.getElementById('btnLaunch');
     if (_initBtnLaunch) _initBtnLaunch.classList.toggle('active', currentPool === 'launch');
 
