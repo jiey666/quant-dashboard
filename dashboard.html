@@ -836,20 +836,15 @@
             <th class="left-align">名称</th>
             <th data-col="sector" class="left-align th-filter">赛道 <span class="th-arrow">▾</span></th>
             <th data-col="driver" class="left-align th-filter">驱动方向 <span class="th-arrow">▾</span></th>
-            <th data-col="phase" class="th-filter">阶段 <span class="th-arrow">▾</span></th>
             <th data-col="price" class="th-filter">现价 <span class="th-arrow">▾</span></th>
             <th data-col="changePct" class="th-filter">涨跌幅 <span class="th-arrow">▾</span></th>
             <th data-col="turnover" class="th-filter">换手率 <span class="th-arrow">▾</span></th>
-            <th data-col="pepb" class="th-filter">PE/PB <span class="th-arrow">▾</span></th>
-            <th data-col="fund" class="th-filter">基本面 <span class="th-arrow">▾</span></th>
             <th data-col="kd5" class="th-filter">5分钟KD <span class="th-arrow">▾</span></th>
             <th data-col="kd30" class="th-filter">30分钟KD <span class="th-arrow">▾</span></th>
             <th data-col="volsig" class="th-filter">量价信号 <span class="th-arrow">▾</span></th>
             <th data-col="mainflow" class="th-filter">主力资金 <span class="th-arrow">▾</span></th>
             <th data-col="flow510" class="th-filter">5日/10日资金 <span class="th-arrow">▾</span></th>
             <th data-col="sectorres" class="th-filter">板块共振 <span class="th-arrow">▾</span></th>
-            <th>支撑价</th>
-            <th class="left-align">逻辑</th>
           </tr>
         </thead>
         <tbody id="stockBody"></tbody>
@@ -3187,20 +3182,15 @@ function renderStockRow(stock, index) {
       <td class="left-align">${nameHtml}${newTag}</td>
       <td class="left-align">${sectorHtml}</td>
       <td class="left-align"><span class="dir-text" title="当日实时主力资金流向">⚡ ${escapeHtml(stock.direction || '--')}</span><div class="dir-tags" title="综合信号判断">${driverTagsHtml}</div></td>
-      <td><span class="phase-tag ${pCls}">${escapeHtml(phaseShort)}</span></td>
       <td><span class="price-text ${priceCls}">${price !== undefined && price !== null ? price.toFixed(2) : '--'}</span></td>
       <td><span class="chg-pct ${priceCls}">${chgStr}</span></td>
       <td>${turnoverHtml}</td>
-      <td>${pePbHtml}</td>
-      <td class="left-align">${fundHtml}</td>
       <td>${kd5Html}</td>
       <td>${kd30Html}</td>
       <td>${volHtml}</td>
       <td>${flowHtml}</td>
       <td>${flowDualHtml}</td>
       <td>${resonHtml}</td>
-      <td>${supportHtml}</td>
-      <td class="col-logic">${logicHtml}</td>
     </tr>
   `;
 }
@@ -3339,7 +3329,7 @@ function renderStocks() {
 
   if (pool.length === 0) {
     body.innerHTML = `
-      <tr><td colspan="19">
+      <tr><td colspan="14">
         <div class="empty-state">
           <div class="empty-state-icon">📭</div>
           <div class="empty-state-text">暂无选股数据</div>
@@ -3392,7 +3382,7 @@ function renderStocks() {
       const maxS = Math.max(...scores);
       const minS = Math.min(...scores);
 
-      html += `<tr class="phase-section-header ${g.cls}"><td colspan="19">`;
+      html += `<tr class="phase-section-header ${g.cls}"><td colspan="14">`;
       html += `<span class="phase-header-icon">${g.label}</span>`;
       html += `<span class="phase-header-count">${groupStocks.length} 只</span>`;
       html += `<span class="phase-header-score">预启动分 ${minS}~${maxS}</span>`;
@@ -3404,7 +3394,7 @@ function renderStocks() {
           html += renderStockRow(s, globalIdx++);
         } catch(e) {
           console.error('[renderStockRow error]', s.code, e);
-          html += '<tr><td colspan="19" style="color:orange;">⚠️ ' + s.code + ' 渲染错误: ' + e.message + '</td></tr>';
+          html += '<tr><td colspan="14" style="color:orange;">⚠️ ' + s.code + ' 渲染错误: ' + e.message + '</td></tr>';
         }
       });
     });
@@ -3425,14 +3415,14 @@ function renderStocks() {
       return renderStockRow(s, i);
     } catch(e) {
       console.error('[renderStockRow error]', s.code, e);
-      return '<tr><td colspan="19" style="color:orange;">⚠️ ' + s.code + ' 渲染错误: ' + e.message + '</td></tr>';
+      return '<tr><td colspan="14" style="color:orange;">⚠️ ' + s.code + ' 渲染错误: ' + e.message + '</td></tr>';
     }
   }).join('');
   renderMobileCards(sortedPool);
   } catch(e) {
     console.error('[renderStocks error]', e);
     const body = document.getElementById('stockBody');
-    if (body) body.innerHTML = '<tr><td colspan="19" style="color:red;padding:20px;">⚠️ renderStocks 错误: ' + e.message + '</td></tr>';
+    if (body) body.innerHTML = '<tr><td colspan="14" style="color:red;padding:20px;">⚠️ renderStocks 错误: ' + e.message + '</td></tr>';
   }
 }
 
@@ -5158,7 +5148,7 @@ function applyKDJFallbackEarly() {
     // 显示错误在页面上
     const body = document.getElementById('stockBody');
     if (body) {
-      body.innerHTML = '<tr><td colspan="19" style="color:red;padding:20px;text-align:center;">⚠️ 初始化错误: ' + e.message + '<br><pre style="text-align:left;font-size:11px;">' + (e.stack||'').substring(0,500) + '</pre></td></tr>';
+      body.innerHTML = '<tr><td colspan="14" style="color:red;padding:20px;text-align:center;">⚠️ 初始化错误: ' + e.message + '<br><pre style="text-align:left;font-size:11px;">' + (e.stack||'').substring(0,500) + '</pre></td></tr>';
     }
   }
 })();
