@@ -91,12 +91,17 @@
   .idx-cap-row { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font-size: 11px; margin-bottom: 4px; }
   .idx-cap-row > span:first-child { color: var(--text-muted); white-space: nowrap; }
   .idx-cap-big { font-size: 17px; font-weight: 700; font-variant-numeric: tabular-nums; }
-  .idx-cap-trend { font-size: 11px; font-weight: 700; padding: 4px 7px; border-radius: 4px; margin: 6px 0 4px; }
+  .idx-cap-trend { font-size: 13px; font-weight: 700; padding: 6px 10px; border-radius: 4px; margin: 8px 0 4px; display: flex; align-items: baseline; gap: 8px; }
   .idx-cap-trend.good { background: rgba(88,166,255,.13); color: var(--blue); }
   .idx-cap-trend.bad { background: rgba(219,109,40,.14); color: var(--orange); }
   .idx-cap-trend.warn { background: rgba(210,153,34,.14); color: var(--yellow); }
   .idx-cap-trend.neutral { background: rgba(110,118,129,.16); color: var(--text-muted); }
   .idx-cap-tail { font-size: 10px; color: var(--text-muted); line-height: 1.35; }
+  .flow-trend { display: inline-block; font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 3px; margin-top: 3px; cursor: default; }
+  .flow-trend.pos { background: rgba(88,166,255,.13); color: var(--blue); }
+  .flow-trend.neg { background: rgba(219,109,40,.14); color: var(--orange); }
+  .flow-trend.warn { background: rgba(210,153,34,.14); color: var(--yellow); }
+  .flow-trend.neutral { background: rgba(110,118,129,.16); color: var(--text-muted); }
   .idx-spark { width: 100%; height: 38px; display: block; margin-top: 5px; }
   .idx-spark-label { font-size: 9px; color: var(--text-dim); text-align: right; margin-top: -2px; }
   .idx-foot { padding: 7px 12px; border-top: 1px solid var(--border); font-size: 11px; color: var(--text-muted); line-height: 1.4; }
@@ -2858,6 +2863,21 @@ function isPositiveFlow(str) {
   return s.indexOf('+') >= 0 || /^\d/.test(s);
 }
 
+// 个股资金趋势判定（对齐大盘监测的回流/流出口径）
+// todayPos: 今日主力方向 true=流入 false=流出 null=无数据；f5d: 5日资金字符串
+function stockCapitalTrend(todayPos, f5d) {
+  var hasToday = todayPos !== null && todayPos !== undefined;
+  var has5d = f5d && String(f5d).length > 0;
+  if (!hasToday && !has5d) return null;
+  var fivePos = has5d ? isPositiveFlow(f5d) : null;
+  if (hasToday && todayPos && (!has5d || fivePos)) return { label: '⬆ 持续流入', cls: 'pos', tip: '今日与近5日主力均为净流入' };
+  if (hasToday && todayPos && has5d && !fivePos) return { label: '⬆ 资金回流', cls: 'pos', tip: '今日净流入而近5日仍流出，资金开始转向' };
+  if (hasToday && !todayPos && has5d && fivePos) return { label: '⬇ 获利回吐', cls: 'warn', tip: '今日净流出而近5日仍流入，资金开始撤退' };
+  if (hasToday && !todayPos && (!has5d || !fivePos)) return { label: '⬇ 持续流出', cls: 'neg', tip: '今日与近5日主力均为净流出' };
+  if (fivePos) return { label: '⬆ 5日流入', cls: 'pos', tip: '近5日主力净流入（当日无数据）' };
+  return { label: '⬇ 5日流出', cls: 'neg', tip: '近5日主力净流出（当日无数据）' };
+}
+
 // ============================================
 // 渲染统计卡片（10个）
 // ============================================
@@ -2923,6 +2943,7 @@ function renderIndexMonitor() {
 
   var mainCls = idxDirCls(c.main);
   var trendTone = c.trendTone || 'neutral';
+  var trendArrow = (c.trend || '').indexOf('流出') >= 0 ? '⬇' : ((c.trend || '').indexOf('流入') >= 0 || (c.trend || '').indexOf('回流') >= 0 ? '⬆' : '◆');
   var sparkVals = (c.intraday || []).map(function(x) { return x[1]; });
   var tailCls = idxDirCls(c.tail);
 
@@ -2948,7 +2969,7 @@ function renderIndexMonitor() {
     +     '<div class="idx-cap-row"><span>超大单 / 大单</span><span class="' + idxDirCls(c.superLarge) + '">' + fmtIdx(c.superLarge, 2) + '</span> / <span class="' + idxDirCls(c.large) + '">' + fmtIdx(c.large, 2) + ' 亿</span></div>'
     +     '<div class="idx-cap-row"><span>中单 / 小单</span><span class="' + idxDirCls(c.mid) + '">' + fmtIdx(c.mid, 2) + '</span> / <span class="' + idxDirCls(c.small) + '">' + fmtIdx(c.small, 2) + ' 亿</span></div>'
     +     '<div class="idx-cap-row"><span>近3 / 5 / 10日累计</span><span><b class="' + idxDirCls(c.d3) + '">' + fmtIdx(c.d3, 0) + '</b> / <b class="' + idxDirCls(c.d5) + '">' + fmtIdx(c.d5, 0) + '</b> / <b class="' + idxDirCls(c.d10) + '">' + fmtIdx(c.d10, 0) + ' 亿</b></span></div>'
-    +     '<div class="idx-cap-trend ' + trendTone + '">' + (c.trend || '--') + '　<span style="font-weight:400">' + (c.trendHint || '') + '</span></div>'
+    +     '<div class="idx-cap-trend ' + trendTone + '"><span style="font-size:15px">' + trendArrow + '</span><b>' + (c.trend || '--') + '</b><span style="font-weight:400">' + (c.trendHint || '') + '</span></div>'
     +     '<div class="idx-cap-tail">尾盘 14:00→收盘 <b class="' + tailCls + '">' + fmtIdx(c.tail, 2) + ' 亿</b> · ' + (c.tailHint || '') + '　｜　' + (c.trendNote || '') + '</div>'
     +     buildSpark(sparkVals)
     +     '<div class="idx-spark-label">当日主力资金分时累计（亿元，虚线为零轴）</div>'
@@ -3252,6 +3273,12 @@ function renderStockRow(stock, index) {
   } else {
     flowHtml = '<span class="flow-main">--</span>';
   }
+  // 资金趋势徽章（今日主力方向 × 5日资金方向 → 持续流入/资金回流/获利回吐/持续流出）
+  const todayFlowPos = mainFlow ? mainFlowPos : (mainFlowToday !== undefined && mainFlowToday !== null ? mainFlowToday > 0 : null);
+  const capTrend = stockCapitalTrend(todayFlowPos, String(stock.flow5d || (flow && flow.flow_5d_str) || ''));
+  if (capTrend) {
+    flowHtml += `<div class="flow-trend ${capTrend.cls}" title="${capTrend.tip}">${capTrend.label}</div>`;
+  }
 
   // 30日高开率
   const openRate = stock.openRate30d;
@@ -3417,6 +3444,12 @@ function renderMobileCard(stock) {
     ? `${aboveMA20 ? '▲' : '▼'}${aboveMA20 ? '>' : '<'}20日线`
     : '--';
 
+  // 资金趋势（对齐大盘监测回流/流出口径）
+  const mfNum = stock.mainFlowToday;
+  const mfs = stock.mainFlow || '';
+  const todayPosM = mfs ? isPositiveFlow(mfs) : (mfNum !== undefined && mfNum !== null ? mfNum > 0 : null);
+  const capT = stockCapitalTrend(todayPosM, String(stock.flow5d || ''));
+
   return `<div class="mobile-card ${cardCls}">
     <div class="mc-top">
       <span class="mc-score ${sCls}">${score}</span>
@@ -3427,6 +3460,7 @@ function renderMobileCard(stock) {
     </div>
     <div class="mc-info">
       <span class="mc-info-item"><span class="mc-phase ${pCls}">${escapeHtml(phaseDisp || '--')}</span></span>
+      <span class="mc-info-item"><span class="mc-info-label">资金</span><span class="mc-info-val">${capT ? capT.label : '--'}</span></span>
       <span class="mc-info-item"><span class="mc-info-label">驱动</span><span class="mc-info-val">${escapeHtml(direction)}</span></span>
       <span class="mc-info-item"><span class="mc-info-label">量价</span><span class="mc-info-val">${escapeHtml(volSignal)}</span></span>
       <span class="mc-info-item"><span class="mc-info-label">趋势</span><span class="mc-info-val">${escapeHtml(trendStr)}</span></span>
