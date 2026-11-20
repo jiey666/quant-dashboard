@@ -846,6 +846,8 @@
             <th class="left-align">名称</th>
             <th data-col="sector" class="left-align th-filter">赛道 <span class="th-arrow">▾</span></th>
             <th data-col="driver" class="left-align th-filter">驱动方向 <span class="th-arrow">▾</span></th>
+            <th data-col="bottom" class="th-filter">跌透判定 <span class="th-arrow">▾</span></th>
+            <th data-col="alert" class="th-filter">尾盘提醒 <span class="th-arrow">▾</span></th>
             <th data-col="price" class="th-filter">现价 <span class="th-arrow">▾</span></th>
             <th data-col="changePct" class="th-filter">涨跌幅 <span class="th-arrow">▾</span></th>
             <th data-col="turnover" class="th-filter">换手率 <span class="th-arrow">▾</span></th>
@@ -855,8 +857,6 @@
             <th data-col="mainflow" class="th-filter">主力资金 <span class="th-arrow">▾</span></th>
             <th data-col="flow510" class="th-filter">5日/10日资金 <span class="th-arrow">▾</span></th>
             <th data-col="sectorres" class="th-filter">板块共振 <span class="th-arrow">▾</span></th>
-            <th data-col="bottom" class="th-filter">跌透判定 <span class="th-arrow">▾</span></th>
-            <th data-col="alert" class="th-filter">尾盘提醒 <span class="th-arrow">▾</span></th>
           </tr>
         </thead>
         <tbody id="stockBody"></tbody>
@@ -3240,6 +3240,8 @@ function renderStockRow(stock, index) {
       <td class="left-align">${nameHtml}${newTag}</td>
       <td class="left-align">${sectorHtml}</td>
       <td class="left-align"><span class="dir-text" title="当日实时主力资金流向">⚡ ${escapeHtml(stock.direction || '--')}</span><div class="dir-tags" title="综合信号判断">${driverTagsHtml}</div></td>
+      <td><span class="bottom-badge b-${bottom.cls}" title="跌透评分 ${bottom.score}/100">${bottom.label}</span></td>
+      <td class="left-align">${alertHtml}</td>
       <td><span class="price-text ${priceCls}">${price !== undefined && price !== null ? price.toFixed(2) : '--'}</span></td>
       <td><span class="chg-pct ${priceCls}">${chgStr}</span></td>
       <td>${turnoverHtml}</td>
@@ -3249,8 +3251,6 @@ function renderStockRow(stock, index) {
       <td>${flowHtml}</td>
       <td>${flowDualHtml}</td>
       <td>${resonHtml}</td>
-      <td><span class="bottom-badge b-${bottom.cls}" title="跌透评分 ${bottom.score}/100">${bottom.label}</span></td>
-      <td class="left-align">${alertHtml}</td>
     </tr>
   `;
 }
